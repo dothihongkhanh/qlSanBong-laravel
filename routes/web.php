@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// route client
 Route::get('/', function () {
-    return view('welcome');
+    return view('client.home.index');
+});
+
+Route::get('/home', function () {
+    return view('client.home.index');
+});
+
+Route::get('/fields', function () {
+    return view('client.fields.index');
 });
