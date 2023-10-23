@@ -19,20 +19,19 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            DistrictSeeder::class,
-            CommentImageSeeder::class,
-            CommentSeeder::class,
-            FieldChildSeeder::class,
-            FieldImageSeeder::class,
-            FieldSeeder::class,
+            UserSeeder::class,
             ImageSeeder::class,
-            OrderDetailSeeder::class,
-            OrderSeeder::class,
+            DistrictSeeder::class,
             PermissionSeeder::class,
             SubDistrictSeeder::class,
             UserPermissionSeeder::class,
-            UserSeeder::class,
-
+            FieldSeeder::class,
+            FieldChildSeeder::class,
+            OrderSeeder::class,
+            OrderDetailSeeder::class,
+            CommentSeeder::class,
+            CommentImageSeeder::class,
+            FieldImageSeeder::class,
         ]);
     }
 }
