@@ -74,7 +74,12 @@
     font-weight: normal;
     border-radius: 2px;
 }
-
+#img_logo{
+    margin-left: 5%;
+    margin-bottom: 10px;
+    width:100px;
+    height:50px;
+}
 
 /*** Navbar ***/
 .navbar-dark .navbar-nav .nav-link {
@@ -488,3 +493,29 @@
     padding-right: 0;
     border-right: none;
 }
+.logo_footer{
+    width: 240px;
+    height: 110px;
+    padding-bottom: 10px;
+}
+#text {
+    width: 300px;
+    height: 100px;
+}
+.input-field {
+    text-align: left;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-fieldd {
+    flex: 1;
+    margin-right: 5px;
+  }

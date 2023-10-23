@@ -2,14 +2,14 @@
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
                     <a href="" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                        <img id="img_log0" src="" alt="logo">
+                        <img id="img_logo" src="{{ asset('client/img/logoXTMN.png') }}" alt="logo">
                     </a>
                 </div>
                 <div class="col-lg-9">
                     
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
                         <a href="" class="navbar-brand d-block d-lg-none">
-                            <img id="img_log0" src="" alt="logo">
+                            <img id="img_logo" src="{{ asset('client/img/logoXTMN.png') }}" alt="logo">
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đăng nhập<i class="fa fa-arrow-right ms-3"></i></a>
+                            <a href="" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đăng nhập<i class="fa fa-user ms-3"></i></a>
                         </div>
                     </nav>
                 </div>
