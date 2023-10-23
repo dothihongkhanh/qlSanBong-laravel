@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('username')->primary();
-            $table->string('account_name');
-            $table->string('phone_number');
-            $table->string('password');
-            $table->string('address');
-            $table->string('avt');
-            $table->rememberToken();
+        Schema::create('sub_district', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_sub_district');
+            $table->unsignedBigInteger('id_district');
             $table->timestamps();
+            
+            $table->foreign('id_district')
+              ->references('id')->on('district')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sub_district');
     }
 };
