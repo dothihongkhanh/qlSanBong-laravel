@@ -28,7 +28,6 @@ class FieldChildSeeder extends Seeder
                 'status' => 'Sẵn sàng',
                 'price' => '150000',
                 'number_star' => 5,
-                'desc' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -39,7 +38,6 @@ class FieldChildSeeder extends Seeder
                 'status' => 'Sẵn sàng',
                 'price' => '120000',
                 'number_star' => 5,
-                'desc' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -50,7 +48,6 @@ class FieldChildSeeder extends Seeder
                 'status' => 'Sẵn sàng',
                 'price' => '170000',
                 'number_star' => 5,
-                'desc' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -61,7 +58,6 @@ class FieldChildSeeder extends Seeder
                 'status' => 'Sẵn sàng',
                 'price' => '140000',
                 'number_star' => 4,
-                'desc' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -72,7 +68,6 @@ class FieldChildSeeder extends Seeder
                 'status' => 'Sẵn sàng',
                 'price' => '170000',
                 'number_star' => 5,
-                'desc' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

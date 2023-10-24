@@ -31,6 +31,7 @@ class FieldSeeder extends Seeder
                 'time_open' => '7:00',
                 'time_close' => '23:30',
                 'price' => '150k – 300k/h',
+                'avt' => 'https://noithatbinhminh.com.vn/wp-content/uploads/2018/09/co-nhan-tao-san-bong-da-nang.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -44,6 +45,7 @@ class FieldSeeder extends Seeder
                 'time_open' => '6:00',
                 'time_close' => '23:30',
                 'price' => '100k – 300k/h',
+                'avt' => 'https://dongphucmientrung.vn/StoreData/PageData/600/san-bong-da-o-da-nang-duy-tan.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -57,6 +59,7 @@ class FieldSeeder extends Seeder
                 'time_open' => '6:00',
                 'time_close' => '23:30',
                 'price' => '100k – 300k/h',
+                'avt' => 'https://qisc.com.vn/storage/2016/06/san-bong-da-mini-co-nhan-tao-doc-soi-6-1024x768.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -70,6 +73,7 @@ class FieldSeeder extends Seeder
                 'time_open' => '5:00',
                 'time_close' => '23:00',
                 'price' => '100k – 300k/h',
+                'avt' => 'https://atsport.vn/wp-content/uploads/2021/08/kich-thuoc-san-bong-mini-5-nguoi-1-512x341.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]

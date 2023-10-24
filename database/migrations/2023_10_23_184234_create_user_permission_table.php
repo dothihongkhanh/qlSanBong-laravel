@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('id_permission')
               ->references('id')->on('permission')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('username')
-            ->references('username')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            ->references('username')->on('user')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

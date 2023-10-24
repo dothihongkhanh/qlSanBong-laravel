@@ -20,14 +20,15 @@ return new class extends Migration
             $table->string('address');
             $table->string('locate');
             $table->time('time_open', $precision = 0);
-            $table->time('time_close', $precision = 0);
+            $table->time('time_close', $precision = 0);            
             $table->string('price');
+            $table->string('avt');
             $table->timestamps();
 
             $table->foreign('id_sub_district')
               ->references('id')->on('sub_district')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('username')
-            ->references('username')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            ->references('username')->on('user')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

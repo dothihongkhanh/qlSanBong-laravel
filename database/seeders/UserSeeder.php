@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
     {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
-        DB::table('users')->insert([
+        DB::table('user')->insert([
             [
                 'username' => 'nguyenvanA', 
                 'account_name' => 'Nguyễn Văn A',

@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('id_field_child')
               ->references('id')->on('field_child')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('username')
-            ->references('username')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            ->references('username')->on('user')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
