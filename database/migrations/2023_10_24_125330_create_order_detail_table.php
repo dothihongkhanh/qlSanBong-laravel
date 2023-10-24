@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_order');
             $table->unsignedBigInteger('id_field_child');
-            $table->string('time_start');
-            $table->string('time_end');
+            $table->time('time_start', $precision = 0);
+            $table->time('time_end', $precision = 0); 
             $table->string('time_order');
             $table->text('note');
             $table->timestamps();

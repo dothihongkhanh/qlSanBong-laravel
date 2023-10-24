@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('locate');
             $table->time('time_open', $precision = 0);
-            $table->time('time_close', $precision = 0);
+            $table->time('time_close', $precision = 0);            
             $table->string('price');
+            $table->string('avt');
             $table->timestamps();
 
             $table->foreign('id_sub_district')
