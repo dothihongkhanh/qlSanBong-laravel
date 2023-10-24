@@ -85,7 +85,7 @@
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
-                        <h6 class="section-title text-start text-primary text-uppercase">Thống kê</h6>
+                        {{-- <h6 class="section-title text-start text-primary text-uppercase"></h6> --}}
                         <h1 class="mb-4">Chào mừng đến với <span class="text-primary text-uppercase">XTMN</span></h1>
                         <p class="mb-4">Dịch vụ cho thuê sân bóng đá mini tiện lợi và hiện đại bậc nhất tại thành phố Đà Nẵng. Hệ thống sân cỏ nhân tạo chất lượng cao, lịch linh hoạt, và đảm bảo an toàn. Hãy cùng trải nghiệm những trận đấu thú vị cùng bạn bè tại XTMN!</p>
                         <div class="row g-3 pb-4">
@@ -173,9 +173,9 @@
                                 <p class="text-body mb-3">Địa chỉ    : Thanh Bình</p>
                                 <p class="text-body mb-3">Giờ mở cửa : 08:00 - 22:00 </p>
                                 <p class="text-body mb-3">Sân bóng mini đẳng cấp, thỏa sức thể hiện đam mê bóng đá.</p>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-end">
                                     <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>
+                                    <!-- <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>-->
                                 </div>
                             </div>
                         </div>
@@ -205,9 +205,9 @@
                                 <p class="text-body mb-3">Địa chỉ    : Thanh Bình</p>
                                 <p class="text-body mb-3">Giờ mở cửa : 08:00 - 22:00 </p>
                                 <p class="text-body mb-3">Sân bóng mini linh hoạt, phù hợp với mọi độ tuổi và trình độ.</p>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-end">
                                     <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>
+                                    <!-- <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>-->
                                 </div>
                             </div>
                         </div>
@@ -237,9 +237,9 @@
                                 <p class="text-body mb-3">Địa chỉ    : Thanh Bình</p>
                                 <p class="text-body mb-3">Giờ mở cửa : 08:00 - 22:00 </p>
                                 <p class="text-body mb-3">Sân bóng mini tiện ích, trải nghiệm chất lượng cao.</p>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-end">
                                     <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
-                                    <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>
+                                    <!-- <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Đặt ngay</a>-->
                                 </div>
                             </div>
                         </div>
