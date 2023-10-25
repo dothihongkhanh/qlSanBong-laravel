@@ -40,9 +40,9 @@
             <div class="container">
                 <div class="copyright">
                     <div class="row">
-                        <div class="col-md-9 text-center text-md-start mb-3 mb-md-0" style="display: flex; justify-content: center; align-items: center;background">
-                          &copy; Bản quyền thuộc <a class="border-bottom" href="">XTMN TEAM</a>
-                        </div>
+                        <div class="justify-content-center" style="display: flex; justify-content: center; align-items: center;background">
+                            <p> &copy; Bản quyền thuộc XTMN Team</p>
+                          </div>
                       </div>
                 </div>
             </div>
