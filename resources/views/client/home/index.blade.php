@@ -147,85 +147,31 @@
                     <h1 class="mb-5">Khám phá <span class="text-primary text-uppercase">SÂN BÓNG</span></h1>
                 </div>
                 <div class="row g-4">
+                    @foreach ($fields as $field)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="room-item shadow rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="client/img/san1.jpg" alt="" style="width: 100%;height: 250px;">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">200.000VND/Giờ</small>
-                              </div>
+                                <img class="img-fluid" src="{{ $field->avt }}" alt="Field Image" style="width: 100%; height: 250px;">
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">{{ $field->price }}</small>
+                            </div>
                             <div class="p-4 mt-2">
                                 <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">Sân Đa Phước </h5>
+                                    <h5 class="mb-0">{{ $field->name_field }}</h5>
                                     <div class="ps-2">
                                         <small class="fa fa-star text-primary"></small>
-                                        
                                     </div>
                                 </div>
-                              
-                                <p class="text-body mb-3">Địa chỉ    : Thanh Bình</p>
-                                <p class="text-body mb-3">Giờ mở cửa : 08:00 - 22:00 </p>
-                               
+                                <p class="text-body mb-3">Địa chỉ: {{ $field->address }}</p>
+                                <p class="text-body mb-3">Giờ mở cửa: {{ $field->time_open }} - {{ $field->time_close }}</p>
                                 <div class="d-flex justify-content-end">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
-                                   
+                                    <!--<a class="btn btn-sm btn-primary rounded py-2 px-4" href="{ route('field.details', ['id' => $field->id]) }}">Xem chi tiết</a>-->
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="client/img/san2.jpg" alt="" style="width: 100%;height: 250px;">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">200.000VND/Giờ</small>
-                              </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">Sân Hòa Xuân</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                        
-                                    </div>
-                                </div>
-                               
-                                <p class="text-body mb-3">Địa chỉ    : Thanh Bình</p>
-                                <p class="text-body mb-3">Giờ mở cửa : 08:00 - 22:00 </p>
-                               
-                                <div class="d-flex justify-content-end">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="room-item shadow rounded overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="client/img/san3.jpg" alt="" style="width: 100%;height: 250px;">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">200.000VND/Giờ</small>
-                              </div>
-                            <div class="p-4 mt-2">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">Sân Duy Tân</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
-                                       
-                                    </div>
-                                </div>
-                                
-                                <p class="text-body mb-3">Địa chỉ    : Thanh Bình</p>
-                                <p class="text-body mb-3">Giờ mở cửa : 08:00 - 22:00 </p>
-                               
-                                <div class="d-flex justify-content-end">
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-       
-        
-
   @endsection
