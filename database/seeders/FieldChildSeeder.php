@@ -83,6 +83,7 @@ class FieldChildSeeder extends Seeder
                 'status' => 'Sẵn sàng',
                 'price' => '140000',
                 'number_star' => 4,
+                'avt' => 'https://top10tphcm.com/wp-content/uploads/2020/12/San-bong-da-o-binh-thanh.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
