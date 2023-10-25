@@ -9,8 +9,8 @@
                     <div class="col-md-6 col-lg-3">
                         <h6 class="section-title text-start text-primary text-uppercase mb-4">Liên hệ</h6>
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>48 Cao Thắng, Thanh Bình, Hải Châu, Đà Nẵng</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+48 353 057 899</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 353 057 899</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>xtmn2023@gmail.com</p>
                         <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <h6 class="section-title text-start text-primary text-uppercase mb-4">Hòm thư góp ý</h6>
                                 <input type="text" id="text" name="search" placeholder="Nhập thông tin góp ý" class="input-fieldd">
-                                <button id="send">Gửi</button>
+                                <button class="btn btn-sm btn-primary rounded py-1 px-2" id="send">Gửi</button>
                             </div>
                         </div>
                     </div>
