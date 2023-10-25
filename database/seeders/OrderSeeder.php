@@ -22,7 +22,21 @@ class OrderSeeder extends Seeder
 
         DB::table('order')->insert([
             [
-                'username' => 'nguyenvanC', 
+                'username' => 'letuananh', 
+                'time_create' => Carbon::now(),
+                'status' => 'Đã xác nhận', 
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'levantuan', 
+                'time_create' => Carbon::now(),
+                'status' => 'Đã xác nhận', 
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'nguyenvancong', 
                 'time_create' => Carbon::now(),
                 'status' => 'Đã xác nhận', 
                 'created_at' => Carbon::now(),

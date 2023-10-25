@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('price');
             $table->string('number_star');
+            $table->string('avt');
             $table->timestamps();
 
             $table->foreign('id_field')

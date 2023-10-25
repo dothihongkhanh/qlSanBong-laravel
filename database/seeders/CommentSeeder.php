@@ -22,11 +22,29 @@ class CommentSeeder extends Seeder
 
         DB::table('comment')->insert([
             [
-                'username' => 'nguyenvanC', 
+                'username' => 'letuananh', 
                 'id_field_child' => 1,
                 'time' => Carbon::now(),
                 'star' => 5,
                 'content' => 'Sân này chất lượng tốt, mình sẽ quay lại',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'levantuan', 
+                'id_field_child' => 1,
+                'time' => Carbon::now(),
+                'star' => 5,
+                'content' => 'Sân đẹp, giá hợp lý',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'nguyenvancong', 
+                'id_field_child' => 1,
+                'time' => Carbon::now(),
+                'star' => 4,
+                'content' => 'Sân ok',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]      
