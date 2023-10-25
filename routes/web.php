@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// route client
-Route::get('/', function () {
-    return view('client.home.index');
-});
+use App\Http\Controllers\FieldController;
+
+Route::get('/', [FieldController::class, 'index'])->name('client.home');
 
 Route::get('/home', function () {
     return view('client.home.index');
