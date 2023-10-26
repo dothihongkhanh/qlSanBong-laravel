@@ -84,7 +84,7 @@
                                 <p class="text-body mb-3">Giờ mở cửa: {{ $field->time_open }} - {{ $field->time_close }}</p>
                                 <div class="d-flex justify-content-end">
                                     <!--<a class="btn btn-sm btn-primary rounded py-2 px-4" href="{ route('field.details', ['id' => $field->id]) }}">Xem chi tiết</a>-->
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="{{ route('client.fields.detail', ['id' => $field->id]) }}">Xem chi tiết</a>
                                 </div>
                             </div>
                         </div>

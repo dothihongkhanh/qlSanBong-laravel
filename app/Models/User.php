@@ -10,18 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    protected $table = 'user'; // Tên của bảng trong cơ sở dữ liệu
+    protected $primaryKey = 'username'; // Khóa chính của bảng
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    // Các trường của bảng field
+    protected $fillable = ['username', 'account_name', 'phone_number'];
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that should be hidden for serialization.

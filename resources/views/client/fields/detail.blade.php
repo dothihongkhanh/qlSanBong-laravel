@@ -23,72 +23,36 @@
                         <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
                             <!--Start Slides-->
                             <div class="carousel-inner product-links-wap" role="listbox">
-
                                 <!--First slide-->
                                 <div class="carousel-item active">
                                     <div class="row">
+                                        @foreach ($fieldImages->take(3) as $image)
                                         <div class="col-4">
                                             <a href="#">
-                                                <img class="card-img img-fluid" src="https://bulbal.vn/wp-content/uploads/2023/01/TOP-10-SAN-BONG-DA-PHUI-TAI-TPHCM-NAM-2023.jpg" alt="Product Image 1">
+                                                <img class="card-img img-fluid" src="{{ $imageUrls->where('id', $image->id_image)->first()->url }}" alt="Hình ảnh trường">
                                             </a>
                                         </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="https://bulbal.vn/wp-content/uploads/2023/01/TOP-10-SAN-BONG-DA-PHUI-TAI-TPHCM-NAM-2023.jpg" alt="Product Image 2">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="https://bulbal.vn/wp-content/uploads/2023/01/TOP-10-SAN-BONG-DA-PHUI-TAI-TPHCM-NAM-2023.jpg" alt="Product Image 3">
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
-                                </div>
+                                </div>                                
                                 <!--/.First slide-->
-
                                 <!--Second slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/product_single_04.jpg" alt="Product Image 4">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/product_single_05.jpg" alt="Product Image 5">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/product_single_06.jpg" alt="Product Image 6">
-                                            </a>
+                                <div class="carousel">
+                                    @foreach ($fieldImages->chunk(3) as $chunk)
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            @foreach ($chunk as $image)
+                                            <div class="col-4">
+                                                <a href="#">
+                                                    <img class="card-img img-fluid" src="{{ $imageUrls->where('id', $image->id_image)->first()->url }}" alt="Hình ảnh trường">
+                                                </a>
+                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                </div>
+                                    @endforeach
+                                </div>                                
                                 <!--/.Second slide-->
-
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/product_single_07.jpg" alt="Product Image 7">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/product_single_08.jpg" alt="Product Image 8">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="#">
-                                                <img class="card-img img-fluid" src="assets/img/product_single_09.jpg" alt="Product Image 9">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Third slide-->
                             </div>
                             <!--End Slides-->
                         </div>
@@ -107,7 +71,7 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2">Sân Đa Phước</h1>
+                            <h1 class="h2">{{ $field->name_field }}</h1>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -122,7 +86,7 @@
                                     <h6>Địa chỉ:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
+                                    <p class="text-muted"><strong>{{ $field->address }}</strong></p>
                                 </li>
                             </ul>
 
@@ -131,7 +95,7 @@
                                     <h6>Thời gian mở cửa:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
+                                    <p class="text-muted"><strong>{{ $field->time_open }} - {{ $field->time_close }}</strong></p>
                                 </li>
                             </ul>
                             <ul class="list-inline">
@@ -139,7 +103,7 @@
                                     <h6>Chủ sân:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
+                                    <p class="text-muted"><strong>{{ $user->account_name }}</strong></p>
                                 </li>
                             </ul>
                             <ul class="list-inline">
@@ -147,12 +111,12 @@
                                     <h6>Số điện thoại chủ sân:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
+                                    <p class="text-muted"><strong>{{ $user->phone_number }}</strong></p>
                                 </li>
                             </ul>
 
                             <h6>Description:</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse. Donec condimentum elementum convallis. Nunc sed orci a diam ultrices aliquet interdum quis nulla.</p>
+                            <p>{{ $field->description }}</p>
                             
                         </div>
                     </div>
@@ -161,5 +125,21 @@
         </div>
     <!-- Close Content -->
     <!-- Sân con -->
-    hih
-    @endsection
+    <div class="row">
+        @foreach ($fieldChild as $child)
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                @if ($child->avt)
+                    <img src="{{ $child->avt}}" class="card-img-top" alt="Avatar">
+                @endif
+                <div class="card-body">
+                    <h5 class="card-title">{{ $child->name_field_child }}</h5>
+                    <p class="card-text"><strong>Type:</strong> {{ $child->type_field_child }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ $child->status }}</p>
+                    <p class="card-text"><strong>Price:</strong> {{ $child->price }}</p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+@endsection

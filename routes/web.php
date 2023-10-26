@@ -23,6 +23,4 @@ Route::get('/home', function () {
 });
 
 Route::get('/fields', [FieldController::class, 'index'])->name('client.fields.index');
-Route::get('/detail', function () {
-    return view('client.fields.detail');
-});
+Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.detail');
