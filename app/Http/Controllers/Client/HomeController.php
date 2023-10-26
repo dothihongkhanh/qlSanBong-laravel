@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
-use App\Models\Field; // Sử dụng model Field
+use App\Http\Controllers\Controller;
+use App\Models\Field;
 
-class FieldController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
@@ -14,4 +15,3 @@ class FieldController extends Controller
         return view('client.home.index', compact('fields')); // Truyền dữ liệu vào view
     }
 }
-

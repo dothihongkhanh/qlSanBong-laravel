@@ -16,8 +16,8 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href=""  class="nav-item nav-link active">Trang chủ</a>
-                                <a href="" class="nav-item nav-link">Danh sách sân</a>
+                                <a href="{{ route('client.home') }}"  class="nav-item nav-link ">Trang chủ</a>
+                                <a href="{{ route('client.fields.index') }}" class="nav-item nav-link active">Danh sách sân</a>
                                 <a href="" class="nav-item nav-link">Tìm kèo</a>
                                 <a href="" class="nav-item nav-link">Liên hệ</a>
                                 <div class="nav-item dropdown">
