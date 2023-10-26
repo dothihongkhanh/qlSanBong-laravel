@@ -3,24 +3,24 @@
 @section('title', 'Danh sách sân')
 @section('content')
     <!-- Page Header Start -->
-    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(img/carousel-1.jpg);">
+    <div class="container-fluid page-header mb-5 p-0" style="background-image: url(client/img/carousel-1.jpg)">
             <div class="container-fluid page-header-inner py-5">
                 <div class="container text-center pb-5">
                     <h1 class="display-3 text-white mb-3 animated slideInDown">Danh sách sân</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('client.home') }}">Trang chủ</a></li>
                             <li class="breadcrumb-item text-white active" aria-current="page">Danh sách sân</li>
                         </ol>
                     </nav>
                 </div>
             </div>
-        </div>
+    </div>
         <!-- Page Header End -->
 <!-- Page Header End -->
 
- <!-- search sân-->
- <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
+  <!-- search sân-->
+  <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container">
                 <div class="bg-white shadow" style="padding: 35px;">
                     <div class="row g-2">
@@ -56,9 +56,10 @@
                 </div>
             </div>
         </div>
-</div>
- <!--Cac san bong -->
- <div class="container-xxl py-5">
+        
+     
+         <!--Cac san bong -->
+         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="section-title text-center text-primary text-uppercase">CÁC SÂN BÓNG</h6>

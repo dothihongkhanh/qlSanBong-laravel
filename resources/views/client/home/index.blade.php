@@ -13,7 +13,7 @@
                         <div class="p-3" style="max-width: 100%;">
                             <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">XTMN</h6>
                             <h1 class="display-3 text-white mb-4 animated slideInDown">Dịch vụ cho thuê<br> sân bóng đá mini</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
+                            <a href="{{ route('client.fields.index') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <div class="p-3" style="max-width: 100%;">
                             <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">XTMN</h6>
                             <h1 class="display-3 text-white mb-4 animated slideInDown">Dịch vụ cho thuê<br> sân bóng đá mini</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
+                            <a href="{{ route('client.fields.index') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
                         </div>
                     </div>
                 </div>
