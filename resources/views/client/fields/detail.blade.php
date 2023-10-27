@@ -124,22 +124,97 @@
             </div>
         </div>
     <!-- Close Content -->
-    <!-- Sân con -->
-    <div class="row">
-        @foreach ($fieldChild as $child)
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                @if ($child->avt)
-                    <img src="{{ $child->avt}}" class="card-img-top" alt="Avatar">
-                @endif
-                <div class="card-body">
-                    <h5 class="card-title">{{ $child->name_field_child }}</h5>
-                    <p class="card-text"><strong>Type:</strong> {{ $child->type_field_child }}</p>
-                    <p class="card-text"><strong>Status:</strong> {{ $child->status }}</p>
-                    <p class="card-text"><strong>Price:</strong> {{ $child->price }}</p>
+        <div class="container">
+            <div class="bg-white shadow" style="padding: 35px;">
+                <div class="row g-2">
+                    <div class="col-md-10">
+                        <div class="row g-2">
+                            <div class="col-md-14"> 
+                                    <label class="col-md-13" for="#"> Ngày đặt sân:</label>
+                                    <input type="date" class="col-md-14" min="<?php echo date('Y-m-d'); ?>">
+                            </div>
+                            <div class="col-md-14">
+                                <label class="col-md-13" for="#"> Sân bóng:</label>                                  
+                                <select class="col-md-14" id="mySelect">
+                                    @foreach ($fieldChild as $child)
+                                    <option>{{ $child->name_field_child }}</option>                                        
+                                    @endforeach
+                                </select>
+                            </div>                            
+                        </div>
+                        <div class="row g-2 mt-2">                            
+                            <div class="col-md-14">
+                                <label class="col-md-13" for="#"> Giờ bắt đầu:</label>
+                                <input type="text" name="#" class="col-md-14" placeholder="Nhập kiểu 08:00">
+                            </div>
+                            <div class="col-md-14">
+                                <label class="col-md-13" for="#"> Giờ kết thúc:</label>
+                                <input type="text" class="col-md-14" name="#" placeholder="Nhập kiểu 08:00">                                
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary w-100 ">Thêm sân</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
                 </div>
             </div>
         </div>
-        @endforeach
-    </div>
+                            
+        <!-- Sân con -->
+        <div class="row">
+            @foreach ($fieldChild as $child)
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    @if ($child->avt)
+                        <img src="{{ $child->avt}}" class="card-img-top" alt="Avatar">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $child->name_field_child }}</h5>
+                        <p class="card-text"><strong>Type:</strong> {{ $child->type_field_child }}</p>
+                        <p class="card-text"><strong>Status:</strong> {{ $child->status }}</p>
+                        <p class="card-text"><strong>Price:</strong> {{ $child->price }}</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <!-- Bình luận -->
+        <h2>Bình luận:</h2>
+        @foreach ($comments as $comment)
+            <div class="comment">
+                @foreach ($user2 as $user1)
+                    @if ($comment->username == $user1->username)
+                        <img src="{{ $user1->avt }}" alt="Hình ảnh bình luận">
+                        <p>{{ $user1->account_name }}</p>
+                    @endif
+                @endforeach
+
+                <p>Đánh giá: {{ $comment->star }}<i class="fa fa-star text-warning"></i></p>
+                <p>Thời gian: {{ $comment->time }}</p>
+
+                @foreach ($fieldChild as $fieldChild1)
+                    @if ($fieldChild1->id == $comment->id_field_child)
+                        <p>{{ $fieldChild1->name_field_child }}</p>
+                    @endif
+                @endforeach
+
+                <p>{{ $comment->content }}</p>
+                
+                <!-- Kiểm tra xem có hình ảnh cho bình luận hiện tại -->
+                <h3>Hình ảnh bình luận:</h3>
+                @foreach ($commentImages as $commentImage)
+                    @if ($commentImage->id_comment == $comment->id)
+                        @foreach ($imageUrls2 as $image2)
+                            @if ($image2->id == $commentImage->id_image)
+                                <img src="{{ $image2->url }}" alt="Hình ảnh bình luận">
+                            @endif
+                        @endforeach
+                    @endif
+                @endforeach
+            </div>
+        @endforeach        
+    
 @endsection
