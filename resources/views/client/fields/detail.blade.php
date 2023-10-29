@@ -1,15 +1,17 @@
 <!-- Page Header Start -->
 @extends('client.layouts.app')
-@section('title', 'Trang chi tiết')
+@section('title', $field->name_field)
 @section('content')
 
 <!-- đường dẫn -->
 <!-- close đường dẫn -->
-
+<div class="container mt-3">
+    <p><a href="{{ route('client.home') }}">Trang chủ</a> /<a href="{{ route('client.fields.index') }}"> Danh sách sân </a>/ <b>{{ $field->name_field }}</b></p>
+</div>
 <!-- Open Content -->
 <div class="container pb-5">
     <div class="row">
-        <div class="col-lg-5 mt-5">
+        <div class="col-lg-5 mt-2">
             <div class="card mb-3">
                 <img class="card-img img-fluid" src="{{ $field->avt }}" alt="Card image cap" id="product-detail" style="height:410px">
             </div>
@@ -71,7 +73,7 @@
             </div>
         </div>
         <!-- col end -->
-        <div class="col-lg-7 mt-5">
+        <div class="col-lg-7 mt-2">
             <div class="card">
                 <div class="card-body">
                     <h1 class="h2 text-primary">{{ $field->name_field }}</h1>
@@ -81,9 +83,9 @@
                         <i class="fa fa-star text-warning"></i>
                         <i class="fa fa-star text-warning"></i>
                         <i class="fa fa-star text-secondary"></i>
-                        <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                        <span class="list-inline-item text-dark">Rating 4.8 | {{$commentCount}} Comments</span>
                     </p>
-                    <p class="h4 py-1">{{ $field->price }}</p>
+                    <p class="h4 py-1 text-danger">{{ $field->price }}</p>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <!-- <i class="fa fa-user ms-3"></i> -->
@@ -276,86 +278,72 @@
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title text-center text-primary text-uppercase">Bình luận</h5>
     </div>
-    <div class="row g-2">
-        <div class="col-md-10">
-            <div class="row g-2">
-                <div class="col-md-3">
-                    <div class="date" id="date1" data-target-input="nearest">
-                        <label class="ml-3 form-control-placeholder" for="#">Xem sân bận theo ngày:</label>
-                        <input type="date" class="col-md-14 form-control" min="<?php echo date('Y-m-d'); ?>">
+
+    <!-- Binh luan -->
+    <div class="container mt-3 d-flex">
+
+        <div class="row d-flex">
+            <div class="col-md-12">
+                <div class="text-left">
+                    <h6>Tất cả bình luận ({{$commentCount}})</h6>
+                </div>
+                @foreach ($comments as $comment)
+                <div class="border-bottom p-3 mb-2">
+
+                    <div class="d-flex flex-row">
+                        @foreach ($user2 as $user1)
+                        @if ($comment->username == $user1->username)
+                        <img src="{{ $user1->avt }}" height="40" width="40" class="rounded-circle">
+                        <div class="d-flex flex-column ms-2">
+                            <h6 class="mb-1">{{ $user1->account_name }} | {{ $comment->star }}<i class="fa fa-star text-primary"></i></h6>
+                            @foreach ($fieldChild as $fieldChild1)
+                            @if ($fieldChild1->id == $comment->id_field_child)
+                            <p>Loại sân: <b>{{ $fieldChild1->name_field_child }}</b></p>
+                            @endif
+                            @endforeach
+                            <p class="comment-text">{{ $comment->content }}</p>
+                            <!-- Kiểm tra xem có hình ảnh cho bình luận hiện tại -->
+                            <div class="d-inline mb-3">
+                                @foreach ($commentImages as $commentImage)
+                                @if ($commentImage->id_comment == $comment->id)
+                                @foreach ($imageUrls2 as $image2)
+                                @if ($image2->id == $commentImage->id_image)
+                                <img src="{{ $image2->url }}" style="width:70px ;height:70px">
+                                @endif
+                                @endforeach
+                                @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-primary w-20" style="margin-top:24px">Xem</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row my-3">
-        @foreach ($fieldChild as $child)
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-0 shadow">
-                <div class="position-relative">
-                    @if ($child->avt)
-                    <img src="{{ $child->avt}}" class="card-img-top" style="height:170px">
-                    @endif
-                    <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">{{ $child->price }}/giờ</small>
-                </div>
-                <div class="card-body">
+
                     <div class="d-flex justify-content-between">
-                        <h5 class="mb-2">{{ $child->name_field_child }}</h5>
-                        <div class="ps-0">
-                            <i class="fa fa-star text-primary">{{ $child->number_star }}</i>
+                        <div class="d-flex flex-row gap-3 align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-heart text-danger"></i>
+                                <span class="ms-1 fs-10">Like</span>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-reply text-primary"></i>
+                                <span class="ms-1 fs-10">Reply</span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row">
+                            <span class="text-muted fw-normal fs-10">{{ $comment->time }}</span>
                         </div>
                     </div>
-                    <p class="mb-0">Loại sân: {{ $child->type_field_child }}</p>
-                    <p class="mb-0">Tình trạng: {{ $child->status }}</p>
-                    <p class="mb-0">Khung giờ bận:</p>
-                    <p class="mb-0">7:00 - 10:00 (Ngày 28/10/2023)</p>
-                    <p class="mb-0">7:00 - 10:00 (Ngày 28/10/2023)</p>
+
                 </div>
+                @endforeach
             </div>
+
         </div>
-        @endforeach
+
     </div>
-
 </div>
-<!-- Close binh luan -->
-
-<!-- Bình luận -->
-<h2>Bình luận:</h2>
-@foreach ($comments as $comment)
-<div class="comment">
-    @foreach ($user2 as $user1)
-    @if ($comment->username == $user1->username)
-    <img src="{{ $user1->avt }}" alt="Hình ảnh bình luận">
-    <p>{{ $user1->account_name }}</p>
-    @endif
-    @endforeach
-
-    <p>Đánh giá: {{ $comment->star }}<i class="fa fa-star text-warning"></i></p>
-    <p>Thời gian: {{ $comment->time }}</p>
-
-    @foreach ($fieldChild as $fieldChild1)
-    @if ($fieldChild1->id == $comment->id_field_child)
-    <p>{{ $fieldChild1->name_field_child }}</p>
-    @endif
-    @endforeach
-
-    <p>{{ $comment->content }}</p>
-
-    <!-- Kiểm tra xem có hình ảnh cho bình luận hiện tại -->
-    <h3>Hình ảnh bình luận:</h3>
-    @foreach ($commentImages as $commentImage)
-    @if ($commentImage->id_comment == $comment->id)
-    @foreach ($imageUrls2 as $image2)
-    @if ($image2->id == $commentImage->id_image)
-    <img src="{{ $image2->url }}" alt="Hình ảnh bình luận">
-    @endif
-    @endforeach
-    @endif
-    @endforeach
-</div>
-@endforeach
-
+<!-- close comment -->
 @endsection

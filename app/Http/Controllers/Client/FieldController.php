@@ -29,7 +29,7 @@ class FieldController extends Controller
 
         $fieldChild = FieldChild::where('id_field', $id)->get();
         $fieldImages = FieldImage::where('id_field', $id)->get();
-    
+
         if ($fieldImages->isNotEmpty()) {
             $imageUrls = Image::whereIn('id', $fieldImages->pluck('id_image'))->get();
         } else {
@@ -38,6 +38,8 @@ class FieldController extends Controller
         if ($fieldChild->isNotEmpty()) {
             // Lấy danh sách comment dựa trên id của field
             $comments = Comment::whereIn('id_field_child', $fieldChild->pluck('id'))->get();
+            $commentCount = $comments->count();
+
             if ($comments->isNotEmpty()) {
                 
                 $commentImages = CommentImage::whereIn('id_comment', $comments->pluck('id'))->get();
@@ -49,7 +51,7 @@ class FieldController extends Controller
             } else {
                 $commentImages = collect();
             }
-            $user2 = User::whereIn('username', $comments->pluck('username'))->get();
+            $user2 = User::whereIn('username', $comments->pluck('username'))->get();            
         } else {
             $comments = collect();
         }
@@ -63,6 +65,7 @@ class FieldController extends Controller
             'user2' => $user2,
             'commentImages' => $commentImages,
             'imageUrls2' => $imageUrls2,
+            'commentCount' => $commentCount
         ]);
     }
     
