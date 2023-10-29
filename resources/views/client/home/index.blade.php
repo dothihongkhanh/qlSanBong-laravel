@@ -13,7 +13,7 @@
                         <div class="p-3" style="max-width: 100%;">
                             <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">XTMN</h6>
                             <h1 class="display-3 text-white mb-4 animated slideInDown">Dịch vụ cho thuê<br> sân bóng đá mini</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
+                            <a href="{{ route('client.fields.index') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
                         </div>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <div class="p-3" style="max-width: 100%;">
                             <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">XTMN</h6>
                             <h1 class="display-3 text-white mb-4 animated slideInDown">Dịch vụ cho thuê<br> sân bóng đá mini</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
+                            <a href="{{ route('client.fields.index') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Xem sân</a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-futbol fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">65</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{$fieldCount}}</h2>
                                         <p class="mb-0">Sân bóng</p>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     <div class="border rounded text-center p-4">
                                         {{-- <i class="fa fa-users-cog fa-2x text-primary mb-2"></i> --}}
                                         <i class="fa fa-solid fa-user-tie fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">60</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{ $owner }}</h2>
                                         <p class="mb-0">Chủ sân</p>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">231</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{ $client }}</h2>
                                         <p class="mb-0">Khách hàng</p>
                                     </div>
                                 </div>
@@ -152,20 +152,26 @@
                         <div class="room-item shadow rounded overflow-hidden">
                             <div class="position-relative">
                                 <img class="img-fluid" src="{{ $field->avt }}" alt="Field Image" style="width: 100%; height: 250px;">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">{{ $field->price }}</small>
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
+                                    @if ($priceByField[$field->id]['min'] === $priceByField[$field->id]['max'])
+                                        {{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }}/giờ
+                                    @else
+                                        {{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }} - {{ number_format($priceByField[$field->id]['max'], 0, ',', '.') }}/giờ
+                                    @endif
+                                </small>
                             </div>
                             <div class="p-4 mt-2">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h5 class="mb-0">{{ $field->name_field }}</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
+                                    <div class="ps-2">  
+                                        <p>{{ $averageStars[$field->id] }}<small class="fa fa-star text-primary"></small></p>            
                                     </div>
                                 </div>
                                 <p class="text-body mb-3">Địa chỉ: {{ $field->address }}</p>
                                 <p class="text-body mb-3">Giờ mở cửa: {{ $field->time_open }} - {{ $field->time_close }}</p>
                                 <div class="d-flex justify-content-end">
                                     <!--<a class="btn btn-sm btn-primary rounded py-2 px-4" href="{ route('field.details', ['id' => $field->id]) }}">Xem chi tiết</a>-->
-                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">Xem chi tiết</a>
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href="{{ route('client.fields.detail', ['id' => $field->id]) }}">Xem chi tiết</a>
                                 </div>
                             </div>
                         </div>
