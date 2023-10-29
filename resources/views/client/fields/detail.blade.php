@@ -78,14 +78,9 @@
                 <div class="card-body">
                     <h1 class="h2 text-primary">{{ $field->name_field }}</h1>
                     <p class="py-2">
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-star text-secondary"></i>
-                        <span class="list-inline-item text-dark">Rating 4.8 | {{$commentCount}} Comments</span>
+                        <span class="list-inline-item text-dark">{{ $averageStars }}<i class="fa fa-star text-primary"></i> | {{$commentCount}} Comments</span>
                     </p>
-                    <p class="h4 py-1 text-danger">{{ $field->price }}</p>
+                    <p class="h4 py-1 text-danger">{{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }} - {{ number_format($priceByField[$field->id]['max'], 0, ',', '.') }}/giờ</p>
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <!-- <i class="fa fa-user ms-3"></i> -->
@@ -156,7 +151,7 @@
         </div>
     </div>
     <div class="row my-3">
-        @foreach ($fieldChild as $child)
+        @foreach ($fieldChilds as $child)
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-0 shadow">
                 <div class="position-relative">
@@ -169,7 +164,7 @@
                     <div class="d-flex justify-content-between">
                         <h5 class="mb-2">{{ $child->name_field_child }}</h5>
                         <div class="ps-0">
-                            <i class="fa fa-star text-primary">{{ $child->number_star }}</i>
+                            <p>{{ $averageStars2[$child->id] }}<i class="fa fa-star text-primary"></i></p> 
                         </div>
                     </div>
                     <p class="mb-0">Loại sân: {{ $child->type_field_child }}</p>
@@ -205,7 +200,7 @@
                         <div class="col-md-6">
                             <label class="ml-3 form-control-placeholder" for="#"> Sân:</label>
                             <select class="form-select" id="mySelect">
-                                @foreach ($fieldChild as $child)
+                                @foreach ($fieldChilds as $child)
                                 <option>{{ $child->name_field_child }} ({{ $child->type_field_child }})</option>
                                 @endforeach
                             </select>
@@ -296,7 +291,7 @@
                         <img src="{{ $user1->avt }}" height="40" width="40" class="rounded-circle">
                         <div class="d-flex flex-column ms-2">
                             <h6 class="mb-1">{{ $user1->account_name }} | {{ $comment->star }}<i class="fa fa-star text-primary"></i></h6>
-                            @foreach ($fieldChild as $fieldChild1)
+                            @foreach ($fieldChilds as $fieldChild1)
                             @if ($fieldChild1->id == $comment->id_field_child)
                             <p>Loại sân: <b>{{ $fieldChild1->name_field_child }}</b></p>
                             @endif

@@ -71,13 +71,19 @@
                         <div class="room-item shadow rounded overflow-hidden">
                             <div class="position-relative">
                                 <img class="img-fluid" src="{{ $field->avt }}" alt="Field Image" style="width: 100%; height: 250px;">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">{{ $field->price }}</small>
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
+                                    @if ($priceByField[$field->id]['min'] === $priceByField[$field->id]['max'])
+                                        {{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }}/giờ
+                                    @else
+                                        {{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }} - {{ number_format($priceByField[$field->id]['max'], 0, ',', '.') }}/giờ
+                                    @endif
+                                </small>
                             </div>
                             <div class="p-4 mt-2">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h5 class="mb-0">{{ $field->name_field }}</h5>
                                     <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
+                                        <p>{{ $averageStars[$field->id] }}<small class="fa fa-star text-primary"></small></p> 
                                     </div>
                                 </div>
                                 <p class="text-body mb-3">Địa chỉ: {{ $field->address }}</p>

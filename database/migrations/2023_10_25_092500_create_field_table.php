@@ -20,8 +20,7 @@ return new class extends Migration
             $table->text('address');
             $table->text('locate');
             $table->time('time_open', $precision = 0);
-            $table->time('time_close', $precision = 0);            
-            $table->string('price');
+            $table->time('time_close', $precision = 0);
             $table->text('avt');
             $table->timestamps();
 

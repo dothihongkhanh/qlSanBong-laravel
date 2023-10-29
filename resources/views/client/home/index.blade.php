@@ -102,7 +102,7 @@
                                     <div class="border rounded text-center p-4">
                                         {{-- <i class="fa fa-users-cog fa-2x text-primary mb-2"></i> --}}
                                         <i class="fa fa-solid fa-user-tie fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">60</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{ $user }}</h2>
                                         <p class="mb-0">Chủ sân</p>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">231</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{ $user }}</h2>
                                         <p class="mb-0">Khách hàng</p>
                                     </div>
                                 </div>
@@ -152,13 +152,19 @@
                         <div class="room-item shadow rounded overflow-hidden">
                             <div class="position-relative">
                                 <img class="img-fluid" src="{{ $field->avt }}" alt="Field Image" style="width: 100%; height: 250px;">
-                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">{{ $field->price }}</small>
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
+                                    @if ($priceByField[$field->id]['min'] === $priceByField[$field->id]['max'])
+                                        {{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }}/giờ
+                                    @else
+                                        {{ number_format($priceByField[$field->id]['min'], 0, ',', '.') }} - {{ number_format($priceByField[$field->id]['max'], 0, ',', '.') }}/giờ
+                                    @endif
+                                </small>
                             </div>
                             <div class="p-4 mt-2">
                                 <div class="d-flex justify-content-between mb-3">
                                     <h5 class="mb-0">{{ $field->name_field }}</h5>
-                                    <div class="ps-2">
-                                        <small class="fa fa-star text-primary"></small>
+                                    <div class="ps-2">  
+                                        <p>{{ $averageStars[$field->id] }}<small class="fa fa-star text-primary"></small></p>            
                                     </div>
                                 </div>
                                 <p class="text-body mb-3">Địa chỉ: {{ $field->address }}</p>
