@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('type_field_child');
             $table->string('status');
             $table->string('price');
-            $table->string('number_star');
             $table->text('avt');
             $table->timestamps();
 
