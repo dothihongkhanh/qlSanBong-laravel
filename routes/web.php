@@ -24,3 +24,14 @@ Route::get('/home', function () {
 Route::get('/fields', function () {
     return view('client.fields.index');
 });
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
+Route::post('/register', 'RegisterController@register')->name('register');
+
