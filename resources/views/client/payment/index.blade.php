@@ -1,12 +1,12 @@
 <!-- Page Header Start -->
 @extends('client.layouts.app')
-@section('title', 'Danh sách sân')
+@section('title', 'Trang thanh toán')
 @section('content')
 
 <!-- thong tin dat san  -->
 <div class="container my-sm-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title text-center text-primary">Thông tin đơn đặt sân</h5>
+        <h5 class="section-title text-center text-primary">1. Thông tin đơn đặt sân</h5>
     </div>
     <table class="table table-striped">
         <thead>
@@ -59,7 +59,7 @@
                         <input type="text" class="form-control" />
                     </div>
                     <div class="col-2 mt-sm-4">
-                        <button class="btn btn-primary">Chọn</button>
+                        <button class="btn btn-primary" type="submit">Chọn</button>
                     </div>
                 </div>
                 <div class="row mt-sm-4">
@@ -98,7 +98,7 @@
 <!-- hinh thuc thanh toan -->
 <div class="container my-sm-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title text-center text-primary">Hình thức thanh toán</h5>
+        <h5 class="section-title text-center text-primary">2. Thanh toán</h5>
     </div>
     <div class="col-sm-12">
         <ul class="nav nav-tabs justify-content-center">
@@ -112,14 +112,173 @@
 
         <div class="tab-content">
             <div class="tab-pane active" id="payment-all">
-                <p>day la home</p>
-
-            </div><!--/tab-pane-->
+                <div class="row container d-flex justify-content-center">
+                    <div class="col-lg-12 col-xl-6">
+                        <div class="card border-0">
+                            <div class="row">
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow">
+                                        <form action="{{ url('/vnpay_payment') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg" style="height:110px"></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://wifisukien.info/wp-content/uploads/2020/05/no-image-momo.jpg" style="height:110px"></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://seeklogo.com/images/Z/zalopay-logo-643ADC36A4-seeklogo.com.png" style="height:110px"></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://mma.prnewswire.com/media/946166/PayPal_2023_Logo.jpg?p=facebook" style="height:110px"></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3 text-center ">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center btn btn-primary" style="height: 110px">
+                                        <b>Thanh toán chuyển khoản</b>
+                                    </div>
+                                </div>
+                                <div id="payment_offline" class="col-md-6 mt-sm-3 text-center ">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center btn btn-primary" style="height: 110px">
+                                        <b>Thanh toán tại văn phòng sân</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane" id="deposit">
-            <p>day la deposit</p>
-            </div><!--/tab-pane-->
-
-        </div><!--/tab-pane-->
-    </div><!--/tab-content-->
+            <div class="row container d-flex justify-content-center">
+                    <div class="col-lg-12 col-xl-6">
+                        <div class="card border-0">
+                            <div class="row">
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow">
+                                        <form action="{{ url('/vnpay_payment') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg" style="height:110px"></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://wifisukien.info/wp-content/uploads/2020/05/no-image-momo.jpg" style="height:110px"></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://seeklogo.com/images/Z/zalopay-logo-643ADC36A4-seeklogo.com.png" style="height:110px"></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://mma.prnewswire.com/media/946166/PayPal_2023_Logo.jpg?p=facebook" style="height:110px"></button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-sm-3 text-center ">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center btn btn-primary" style="height: 110px">
+                                        <b>Đặt cọc chuyển khoản</b>
+                                    </div>
+                                </div>
+                                <div id="deposit_offline" class="col-md-6 mt-sm-3 text-center ">
+                                    <div class="border-0 shadow d-flex align-items-center justify-content-center btn btn-primary" style="height: 110px">
+                                        <b>Đặt cọc tại văn phòng sân</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- hidden -->
+<div id="payment_offline_info" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary">Xác nhận thanh toán trực tiếp</h5>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-sm-4">
+                    <div class="col-7">
+                        <p>Tổng thanh toán</p>
+                    </div>
+                    <div class="col-4 float-end">
+                        <b class="text-danger">340.000</b>
+                    </div>
+                    <div class="col-7">
+                        <p>Ngày đặt</p>
+                    </div>
+                    <div class="col-4 float-end">
+                        <b>15:00 - 01/11/2023</b>
+                    </div>
+                    <p class="mt-sm-3">Bạn vui lòng đến 123 Nguyễn Tất Thành để thanh toán. Sau <b>3 ngày</b> kể từ ngày tạo phiếu, nếu bạn không thanh toán, đơn đặt sân của bạn sẽ bị hủy.</p>
+
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center">
+
+                    <a class="btn btn-primary" href="/payment_succsess">Đặt sân</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deposit_offline_info" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary">Xác nhận đặt cọc trực tiếp</h5>
+                <button type="button" class="btn-close" data-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-sm-4">
+                    <div class="col-7">
+                        <p>Tổng đặt cọc</p>
+                    </div>
+                    <div class="col-4 float-end">
+                        <b class="text-danger">68.000</b>
+                    </div>
+                    <div class="col-7">
+                        <p>Ngày đặt</p>
+                    </div>
+                    <div class="col-4 float-end">
+                        <b>15:00 - 01/11/2023</b>
+                    </div>
+                    <p class="mt-sm-3">Bạn vui lòng đến 123 Nguyễn Tất Thành để đặt cọc. Sau <b>3 ngày</b> kể từ ngày tạo phiếu, nếu bạn không đặt cọc, đơn đặt sân của bạn sẽ bị hủy.</p>
+
+                </div>
+                <div class="col-12 d-flex align-items-center justify-content-center">
+
+                    <a class="btn btn-primary" href="/payment_succsess">Đặt sân</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    document.getElementById('payment_offline').addEventListener('click', function() {
+        var myModal = new bootstrap.Modal(document.getElementById('payment_offline_info'));
+        myModal.show();
+    });
+
+    document.getElementById('deposit_offline').addEventListener('click', function() {
+        var myModal = new bootstrap.Modal(document.getElementById('deposit_offline_info'));
+        myModal.show();
+    });
+</script>
 @endsection
