@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đăng nhập<i class="fa fa-user ms-3"></i></a>
+                            <a href="{{ route('login') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Đăng nhập<i class="fa fa-user ms-3"></i></a>
                         </div>
                     </nav>
                 </div>

@@ -217,41 +217,42 @@
                         <div class="col-md-6">
                             <div class="date" id="date1" data-target-input="nearest">
                                 <label class="ml-3 form-control-placeholder" for="#">Ngày đặt:</label>
-                                <input type="date" class="col-md-14 form-control" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
+                                <input type="date" class="col-md-14 form-control" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>"id="inputDate">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label class="ml-3 form-control-placeholder" for="#"> Sân:</label>
-                            <select class="form-select" id="mySelect">
+                            <select id= "inputFieldChild"class="form-select" id="mySelect">
                                 @foreach ($fieldChilds as $child)
-                                <option>{{ $child->name_field_child }} ({{ $child->type_field_child }})</option>
+                                <option>{{ $child->name_field_child }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
                             <div class="date" id="date2" data-target-input="nearest">
                                 <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ bắt đầu</label>
-                                <input type="text" class="form-control datetimepicker-input" placeholder="VD: 5:00" />
+                                <input type="text" class="form-control datetimepicker-input" placeholder="VD: 08:00" id="inputStartTime">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="date" id="date2" data-target-input="nearest">
                                 <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ kết thúc</label>
-                                <input type="text" class="form-control datetimepicker-input" placeholder="VD: 5:00" />
+                                <input type="text" class="form-control datetimepicker-input" placeholder="VD: 10:00" id="inputEndTime">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <button class="btn btn-primary w-100">Thêm sân</button>
+                    <button class="btn btn-primary w-100" id="addBooking">Thêm sân</button>
                 </div>
             </div>
         </div>
         <div class="col-lg-7">
             <div class="row g-2">
-                <table class="table table-striped">
+                <table id="bookingTable" data-field-open-time="{{ $field->time_open }}" data-field-close-time="{{ $field->time_close }}" style="border: 1px solid #a19898;">
+
                     <thead>
-                        <tr>
+                        <tr style="border: 1px solid #857e7e;">
                             <th>Ngày đặt</th>
                             <th>Loại sân</th>
                             <th>Giờ bắt đầu</th>
@@ -259,30 +260,9 @@
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>28/10/2023</td>
-                        <td>Sân 7</td>
-                        <td>8:00</td>
-                        <td>10:00</td>
-                        <td class="text-center"><a class='btn btn-primary' href="#"><i class="fa fa-pen"></i> Edit</a> <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i> Del</a></td>
-                    </tr>
-
-                    <tr>
-                        <td>28/10/2023</td>
-                        <td>Sân 7</td>
-                        <td>8:00</td>
-                        <td>10:00</td>
-                        <td class="text-center"><a class='btn btn-primary' href="#"><i class="fa fa-pen"></i> Edit</a> <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i> Del</a></td>
-                    </tr>
-                    <tr>
-                        <td>28/10/2023</td>
-                        <td>Sân 7</td>
-                        <td>8:00</td>
-                        <td>10:00</td>
-                        <td class="text-center"><a class='btn btn-primary' href="#"><i class="fa fa-pen"></i> Edit</a> <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i> Del</a></td>
-                    </tr>
                 </table>
             </div>
+            
             <div class="col-md-3 float-end">
                 <button class="btn btn-primary w-100 ">Đặt sân</button>
             </div>

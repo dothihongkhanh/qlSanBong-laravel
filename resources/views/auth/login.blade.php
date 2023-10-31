@@ -70,6 +70,7 @@
                                     @endif
                                 </div>
                             </div>
+                            <a href="{{ route('register') }}" >Đăng ký</a>
                         </form>
                     </div>
                 </div>
