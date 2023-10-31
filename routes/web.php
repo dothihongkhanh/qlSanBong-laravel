@@ -46,3 +46,7 @@ Route::get('/registerOwner', function () {
 
 Route::post('/registerOwner', 'App\Http\Controllers\Auth\RegisterOwnerController@registerOwner')->name('registerOwner');
 
+
+Route::get('/client/profile', function () {
+    return view('client.profile.index');
+});
