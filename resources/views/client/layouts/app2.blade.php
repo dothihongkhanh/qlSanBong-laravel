@@ -43,7 +43,7 @@
         <!-- Spinner End -->
 
         <!-- Header Start -->
-        {{-- @include('client.layouts.header2') --}}
+        {{-- @include('client.layouts.header') --}}
         <!-- Header End -->
 
         <div class="content-wrapper">

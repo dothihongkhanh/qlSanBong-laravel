@@ -1,7 +1,7 @@
 @extends('client.layouts.app2')
 
 @section('left-content')
-    <div class="row justify-content-center align-items-center" style="height: 80vh;">
+    <div class="row justify-content-center align-items-center" style="height: 70vh;">
         <img src="client/img/img_register.png" alt="Bức hình" >
         
     </div> 
@@ -9,9 +9,9 @@
 
 @section('right-content')
     <div class="container">
-        <div class="row justify-content-center align-items-center" style="height: 80vh;">
+        <div class="row justify-content-center align-items-center" style="height: 75vh;">
             <div class="card" style="border: 0;border-radius: 10px;">
-                <div class="col-md-7 offset-md-5 text-primary mt-4"><strong>{{ __('ĐĂNG KÝ KHÁCH HÀNG') }}</strong></div>
+                <div class="col-md-7 offset-md-5 text-primary mt-4"><strong>{{ __('ĐĂNG KÝ CHỦ SÂN BÓNG') }}</strong></div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('registerOwner') }}">
                         @csrf
                         <div class="row mb-4">
                             <label for="Tên đăng nhập" class="col-md-4 col-form-label text-md-end">{{ __('Tên đăng nhập') }}</label>
@@ -77,7 +77,7 @@
                                     <i id="toggleConfirmPassword" class="fas fa-regular fa-eye-slash"></i>
                                 </div>
                             </div>
-                            <span id="password-match-error" class="text-primary"></span>
+                            <span id="password-match-error" class="text-warning"></span>
                         </div>
                         <div class="col-md-7 offset-md-5 mt-2"> 
                             <p>Bạn có tài khoản? <a class="text-primary" href="{{ route('login') }}" >Đăng nhập</a></p>

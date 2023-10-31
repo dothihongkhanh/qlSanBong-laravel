@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
                 'phone_number' => '0112233445', 
                 'password' => 'ABC12345',
                 'address' => '156 Lê Duẩn',
-                'avt' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq2IU5Ms2W9aAfftphuUY9ISdst9nzyq3xW5RNu2IeJuMuOtYL-h3W5v7GfpWlxAc21ng&usqp=CAU',
+                'avt' => 'https://st.quantrimang.com/photos/image/2022/08/24/Avt-nu-buon-2.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -88,6 +88,56 @@ class UserSeeder extends Seeder
                 'password' => 'ABC12345',
                 'address' => '20 Cao Thắng',
                 'avt' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq2IU5Ms2W9aAfftphuUY9ISdst9nzyq3xW5RNu2IeJuMuOtYL-h3W5v7GfpWlxAc21ng&usqp=CAU',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'lekhanh', 
+                'account_name' => 'Lê Khánh',
+                'phone_number' => '011223378', 
+                'password' => 'ABC12345',
+                'address' => '143 Nguyễn Hữu Thọ',
+                'avt' => 'https://i.pinimg.com/736x/4a/4c/29/4a4c29807499a1a8085e9bde536a570a.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'dothanhnhan', 
+                'account_name' => 'Đỗ Thành Nhân',
+                'phone_number' => '011223378', 
+                'password' => 'ABC12345',
+                'address' => '25 Hải Phòng',
+                'avt' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb6USzoJJseGHLA8ajF2rz9aHC31ck2gCoDg&usqp=CAU',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'nguyenthanhminh', 
+                'account_name' => 'Nguyễn Thanh Minh',
+                'phone_number' => '011223378', 
+                'password' => 'ABC12345',
+                'address' => '50 Hải Phòng',
+                'avt' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaEOgVuUNm7syGCQbcS27G_S3BY4aK8deIgbry9AtRz6roq6yoi7JMeTS2BPSe1elzmFw&usqp=CAU',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'leanhquan', 
+                'account_name' => 'Lê Anh Quân',
+                'phone_number' => '011223378', 
+                'password' => 'ABC12345',
+                'address' => '50 Hải Phòng',
+                'avt' => 'https://antimatter.vn/wp-content/uploads/2022/04/anh-nen-cute-mau-xanh-duong-avatar-chu-gau.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'username' => 'tranvantung', 
+                'account_name' => 'Trần Văn Tùng',
+                'phone_number' => '011223378', 
+                'password' => 'ABC12345',
+                'address' => '50 Lý Tự Trọng',
+                'avt' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZGIFzkFjdTeZF1qX4zDD93FIbjY6u1ABIZS-PX_HHzlBe6VaoZrn_utnkLqb55QxfoDg&usqp=CAU',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

@@ -1240,6 +1240,17 @@ progress {
         flex: 0 0 auto;
         width: 100%
     }
+    .col-md-13 {
+        flex: 0 0 auto;
+        width: 30%
+    }
+
+    .col-md-14 {
+        
+        display: flex;
+        flex: 0 0 auto;
+        width: 40%
+    }
 
     .offset-md-0 {
         margin-left: 0
@@ -3732,7 +3743,7 @@ fieldset:disabled .btn {
 }
 
 .btn-check:focus+.btn-outline-dark,
-.btn-outline-dark:focuFEA116s {
+.btn-outline-dark:focus {
     box-shadow: 0 0 0 .25rem rgba(15, 23, 43, 0.5)
 }
 

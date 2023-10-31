@@ -13,17 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\FieldController;
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\FieldController;
 
-Route::get('/', [FieldController::class, 'index'])->name('client.home');
+Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
 Route::get('/home', function () {
     return view('client.home.index');
 });
 
-Route::get('/fields', function () {
-    return view('client.fields.index');
-});
+Route::get('/fields', [FieldController::class, 'index'])->name('client.fields.index');
+Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.detail');
+
+
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -33,5 +35,10 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::post('/register', 'RegisterController@register')->name('register');
+Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@register')->name('register');
 
+Route::get('/registerOwner', function () {
+    return view('auth.registerOwner');
+})->name('registerOwner');
+
+Route::post('/registerOwner', 'App\Http\Controllers\Auth\RegisterOwnerController@registerOwner')->name('registerOwner');
