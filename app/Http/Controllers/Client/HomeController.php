@@ -8,15 +8,19 @@ use App\Models\Field;
 use App\Models\FieldChild;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\User_permission;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        
         $fields = Field::all(); // Lấy tất cả dữ liệu từ bảng Fields
+        $owner = User_permission::where('id_permission', 2)->count();
+        $client = User_permission::where('id_permission', 3)->count();
+        $fieldCount =Field::count();
         $averageStarsByField = []; // Mảng lưu trữ trung bình số sao cho từng sân
         $priceByField = []; // Mảng lưu trữ giá trị price tối thiểu và tối đa
-        $user = User::count();
         foreach ($fields as $field) {
             $idFieldToCalculateAverage = $field->id;
             $comments = Comment::whereIn('id_field_child', function($query) use ($idFieldToCalculateAverage) {
@@ -33,7 +37,6 @@ class HomeController extends Controller
             }
             $averageStarsByField[$field->id] = $averageStars;
             
-            // Lấy giá trị price tối thiểu và tối đa
             $priceStats = FieldChild::where('id_field', $idFieldToCalculateAverage)
                 ->selectRaw('MIN(price) as minPrice, MAX(price) as maxPrice')
                 ->first();
@@ -51,7 +54,9 @@ class HomeController extends Controller
             'fields' => $fields, 
             'averageStars' => $averageStarsByField,
             'priceByField' => $priceByField,
-            'user' => $user,
+            'owner' => $owner,
+            'client' => $client,
+            'fieldCount' => $fieldCount, 
         ]);
         
     }

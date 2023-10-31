@@ -10,5 +10,5 @@ class FieldChild extends Model
     protected $primaryKey = 'id'; // Khóa chính của bảng
 
     // Các trường của bảng field_child
-    protected $fillable = ['id_field', 'name_field_child', 'type_field_child', 'status', 'price', 'avt'];
+    protected $fillable = ['id_field', 'name_field_child', 'type_field_child', 'status', 'price', 'avt','created_at','updated_at'];
 }

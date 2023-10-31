@@ -92,7 +92,7 @@
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-futbol fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">65</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{$fieldCount}}</h2>
                                         <p class="mb-0">Sân bóng</p>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                     <div class="border rounded text-center p-4">
                                         {{-- <i class="fa fa-users-cog fa-2x text-primary mb-2"></i> --}}
                                         <i class="fa fa-solid fa-user-tie fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">{{ $user }}</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{ $owner }}</h2>
                                         <p class="mb-0">Chủ sân</p>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                 <div class="border rounded p-1">
                                     <div class="border rounded text-center p-4">
                                         <i class="fa fa-users fa-2x text-primary mb-2"></i>
-                                        <h2 class="mb-1" data-toggle="counter-up">{{ $user }}</h2>
+                                        <h2 class="mb-1" data-toggle="counter-up">{{ $client }}</h2>
                                         <p class="mb-0">Khách hàng</p>
                                     </div>
                                 </div>

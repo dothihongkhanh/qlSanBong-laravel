@@ -26,7 +26,7 @@ class OrderDetailSeeder extends Seeder
                 'id_field_child' => 1,
                 'time_start' => '8:00', 
                 'time_end' => '10:00',
-                'time_order' => '28/10/2023',
+                'time_order' => Carbon::createFromFormat('d/m/Y', '31/10/2023'),
                 'note' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -36,7 +36,7 @@ class OrderDetailSeeder extends Seeder
                 'id_field_child' => 1,
                 'time_start' => '15:00', 
                 'time_end' => '17:00',
-                'time_order' => '28/10/2023',
+                'time_order' => Carbon::createFromFormat('d/m/Y', '03/11/2023'),
                 'note' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -46,7 +46,7 @@ class OrderDetailSeeder extends Seeder
                 'id_field_child' => 1,
                 'time_start' => '17:00', 
                 'time_end' => '18:00',
-                'time_order' => '28/10/2023',
+                'time_order' => Carbon::createFromFormat('d/m/Y', '31/10/2023'),
                 'note' => '',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

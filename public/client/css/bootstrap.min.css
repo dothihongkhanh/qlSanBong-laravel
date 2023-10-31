@@ -753,10 +753,6 @@ progress {
     width: 16.66667%
 }
 
-.row g-2{
-    margin-top: 500px;
-}
-
 .col-auto {
     flex: 0 0 auto;
     width: auto
