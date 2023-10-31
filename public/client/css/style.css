@@ -519,3 +519,20 @@
     flex: 1;
     margin-right: 5px;
   }
+  .input-icon {
+    width: 100%;
+    position: relative;
+ }
+
+.input-icon input {
+   padding-right: 3rem;
+}
+
+.input-icon i {
+    position: absolute;
+    top: 35%;
+    right: 0.5rem;
+    /* transform: translateY(-50%); */
+    color: #6c757d;
+    cursor: pointer;
+}

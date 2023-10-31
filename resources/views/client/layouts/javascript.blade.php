@@ -8,6 +8,6 @@
 <script src="{{ asset('client/lib/tempusdominus/js/moment.min.js') }}"></script>
 <script src="{{ asset('client/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
 <script src="{{ asset('client/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
+<script src="{{ asset('client/js/togglePassword.js') }}"></script>
 <!-- Template Javascript -->
 <script src="{{ asset('client/js/main.js') }}"></script>
