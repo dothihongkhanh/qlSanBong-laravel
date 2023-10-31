@@ -11,6 +11,7 @@ use App\Models\Image;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\CommentImage;
+use App\Models\Order_detail;
 
 class FieldController extends Controller
 {
@@ -48,8 +49,7 @@ class FieldController extends Controller
                 'min' => $minPrice,
                 'max' => $maxPrice,
             ];
-        }
-        
+        }  
         return view('client.fields.index', [
             'fields' => $fields, 
             'averageStars' => $averageStarsByField,
@@ -64,8 +64,8 @@ class FieldController extends Controller
         $fieldChilds = FieldChild::where('id_field', $id)->get();
         $priceByField = [];
         $priceStats = FieldChild::where('id_field', $id)
-        ->selectRaw('MIN(price) as minPrice, MAX(price) as maxPrice')
-        ->first();
+            ->selectRaw('MIN(price) as minPrice, MAX(price) as maxPrice')
+            ->first();
 
         $minPrice = $priceStats->minPrice;
         $maxPrice = $priceStats->maxPrice;
@@ -86,13 +86,36 @@ class FieldController extends Controller
         $user2 = User::whereIn('username', $comments->pluck('username'))->get();
 
         $averageStars2 = [];
+        $times = []; // Khai báo mảng times ở đây
+
         foreach ($fieldChilds as $fieldChild) {
+            $orderDate = request('order_date');
+            // Chuyển đổi ngày từ định dạng 'd/m/Y' sang 'Y-m-d'
+            $orderDateFormatted = date('Y-m-d', ($orderDate));
+
+            $orderDetails = Order_detail::where('id_field_child', $fieldChild->id)
+                ->where('time_order', $orderDateFormatted)
+                ->get();
+
+    
+            $times[$fieldChild->id] = []; // Khai báo mảng thời gian cho fieldChild hiện tại
+            
+            // Lặp qua từng bản ghi Order_detail và lấy giá trị time_start và time_end
+            foreach ($orderDetails as $orderDetail) {
+                $time_start = $orderDetail->time_start;
+                $time_end = $orderDetail->time_end;
+
+                // Thêm giá trị time_start và time_end vào mảng thời gian của fieldChild hiện tại
+                $times[$fieldChild->id][] = [
+                    'time_start' => $time_start,
+                    'time_end' => $time_end,
+                ];
+            }    
             $comments2 = Comment::whereIn('id_field_child', [$fieldChild->id])->get();
             $commentCount2 = $comments2->count();
             $totalStars2 = $comments2->sum('star');
             $averageStars2[$fieldChild->id] = $commentCount2 > 0 ? number_format($totalStars2 / $commentCount2, 1) : 0;
         }
-
         return view('client.fields.detail', [
             'field' => $field,
             'user' => $user,
@@ -107,9 +130,48 @@ class FieldController extends Controller
             'averageStars2' => $averageStars2,
             'commentCount' => $commentCount,
             'priceByField' => $priceByField,
+            'times' => $times, // Pass the order details to the view
         ]);
-
     }
-    
+    public function busy(Request $request)
+    {
+        $times2 = [];
+        $id = $request->input('id');
+        $field = Field::find($id);
+        $fieldChilds = FieldChild::where('id_field', $id)->get();
+
+        foreach ($fieldChilds as $fieldChild) {
+            $orderDate = request('order_date');
+            // Chuyển đổi ngày từ định dạng 'd/m/Y' sang 'Y-m-d'
+            $orderDateTimestamp = strtotime($orderDate);
+            if ($orderDateTimestamp === false) {
+                // Xử lý lỗi nếu $orderDate không hợp lệ
+            } else {
+                $orderDateFormatted = date('Y-m-d', $orderDateTimestamp);
+                $orderDetails = Order_detail::where('id_field_child', $fieldChild->id)
+                    ->where('time_order', $orderDateFormatted)
+                    ->get();
+
+                $times2[$fieldChild->id] = []; // Khai báo mảng thời gian cho fieldChild hiện tại
+                // Lặp qua từng bản ghi Order_detail và lấy giá trị time_start và time_end
+                foreach ($orderDetails as $orderDetail) {
+                    $time_start = $orderDetail->time_start;
+                    $time_end = $orderDetail->time_end;
+
+                    // Thêm giá trị time_start và time_end vào mảng thời gian của fieldChild hiện tại
+                    $times2[$fieldChild->id][] = [
+                        'time_start' => $time_start,
+                        'time_end' => $time_end,
+                    ];
+                }
+            }
+        }
+        return redirect()
+            ->route('client.fields.detail', ['id' => $id])
+            ->with([
+                'orderDateFormatted' => $orderDateFormatted, 
+                'times2' => $times2
+            ]);
+    }
 }
 
