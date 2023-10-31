@@ -11,3 +11,5 @@
 
 <!-- Template Javascript -->
 <script src="{{ asset('client/js/main.js') }}"></script>
+<script src="{{ asset('client/js/togglePassword.js') }}"></script>
+<script src="{{ asset('client/js/password-match.js') }}"></script>

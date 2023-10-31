@@ -11,6 +11,7 @@ use App\Models\Image;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\CommentImage;
+
 use App\Models\Order_detail;
 
 class FieldController extends Controller
@@ -49,7 +50,9 @@ class FieldController extends Controller
                 'min' => $minPrice,
                 'max' => $maxPrice,
             ];
+
         }  
+
         return view('client.fields.index', [
             'fields' => $fields, 
             'averageStars' => $averageStarsByField,
@@ -64,6 +67,7 @@ class FieldController extends Controller
         $fieldChilds = FieldChild::where('id_field', $id)->get();
         $priceByField = [];
         $priceStats = FieldChild::where('id_field', $id)
+
             ->selectRaw('MIN(price) as minPrice, MAX(price) as maxPrice')
             ->first();
 
@@ -86,6 +90,7 @@ class FieldController extends Controller
         $user2 = User::whereIn('username', $comments->pluck('username'))->get();
 
         $averageStars2 = [];
+
         $times = []; // Khai báo mảng times ở đây
 
         foreach ($fieldChilds as $fieldChild) {
@@ -130,6 +135,7 @@ class FieldController extends Controller
             'averageStars2' => $averageStars2,
             'commentCount' => $commentCount,
             'priceByField' => $priceByField,
+
             'times' => $times, // Pass the order details to the view
         ]);
     }

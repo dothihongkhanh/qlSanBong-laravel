@@ -11,5 +11,5 @@ class User_permission extends Model
     protected $primaryKey = 'id'; // Khóa chính của bảng
 
     // Các trường của bảng field_image
-    protected $fillable = ['id_permission','username','created_at','updated_at'];
+    protected $fillable = ['id_permission', 'username'];
 }

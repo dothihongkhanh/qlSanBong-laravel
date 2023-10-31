@@ -218,6 +218,7 @@
                             <div class="date" id="date1" data-target-input="nearest">
                                 <label class="ml-3 form-control-placeholder" for="#">Ngày đặt:</label>
                                 <input type="date" class="col-md-14 form-control" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>">
+
                             </div>
                         </div>
                         <div class="col-md-6">
