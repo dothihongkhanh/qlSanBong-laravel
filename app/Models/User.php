@@ -11,9 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     protected $table = 'user'; // Tên của bảng trong cơ sở dữ liệu
-
-    // Các trường của bảng user
-    protected $fillable = ['username', 'account_name', 'phone_number','password','address','avt','created_at','updated_at'];
+    // Các trường của bảng
+    protected $fillable = ['username', 'account_name', 'phone_number', 'password', 'address', 'avt', 'created_at', 'updated_at'];
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -33,6 +32,5 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 }

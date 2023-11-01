@@ -74,11 +74,12 @@
     font-weight: normal;
     border-radius: 2px;
 }
-#img_logo{
+
+#img_logo {
     margin-left: 5%;
     margin-top: 10px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
 }
 
 /*** Navbar ***/
@@ -97,7 +98,7 @@
 }
 
 @media (max-width: 991.98px) {
-    .navbar-dark .navbar-nav .nav-link  {
+    .navbar-dark .navbar-nav .nav-link {
         margin-right: 0;
         padding: 10px 0;
     }
@@ -129,7 +130,7 @@
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -148,7 +149,7 @@
     background: rgba(15, 23, 43, .7);
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
     color: var(--light);
 }
 
@@ -492,39 +493,44 @@
     padding-right: 0;
     border-right: none;
 }
-.logo_footer{
+
+.logo_footer {
     width: 240px;
     height: 130px;
     padding-bottom: 10px;
 }
+
 #text {
     width: 300px;
     height: 100px;
 }
+
 .input-field {
     text-align: left;
 }
+
 .img-fluid {
     max-width: 100%;
     height: auto;
-  }
+}
 
-  .input-wrapper {
+.input-wrapper {
     display: flex;
     align-items: center;
-  }
-  
-  .input-fieldd {
+}
+
+.input-fieldd {
     flex: 1;
     margin-right: 5px;
-  }
-  .input-icon {
+}
+
+.input-icon {
     width: 100%;
     position: relative;
- }
+}
 
 .input-icon input {
-   padding-right: 3rem;
+    padding-right: 3rem;
 }
 
 .input-icon i {
@@ -535,14 +541,20 @@
     color: #6c757d;
     cursor: pointer;
 }
+
 .content-wrapper {
-    margin: 40px auto; /* Tạo khoảng cách 50px với các cạnh và căn giữa nội dung */
-    max-width: 1100px; /* Giới hạn chiều rộng tối đa của nội dung */
-    border: 1px solid #e3e3e3; /* Thêm border cho nội dung */
-    padding: 20px; /* Tạo khoảng cách đệm bên trong nội dung */
+    /* margin: 10px auto; */
+    /*Tạo khoảng cách 50px với các cạnh và căn giữa nội dung */
+    max-width: 1350px;
+    /* Giới hạn chiều rộng tối đa của nội dung */
+    border: 1px solid #e3e3e3;
+    /* Thêm border cho nội dung */
+    padding: 10px;
+    /* Tạo khoảng cách đệm bên trong nội dung */
     /* border-radius: 10px; */
-    background-color: rgb(165, 255, 195);
+    /* background-color: rgb(165, 255, 195); */
 }
-.navbarCollapse{
+
+.navbarCollapse {
     margin-right: 10px;
 }
