@@ -1,15 +1,24 @@
 @extends('client.layouts.app2')
 
 @section('left-content')
+<<<<<<< HEAD
     <div class="row justify-content-center align-items-center" style="height: 80vh;">
         <img src="client/img/img_register.png" alt="Bức hình" >
+=======
+    <div class="row justify-content-center align-items-center" >
+        <img src="client/img/img_register.png" alt="Bức hình" width="100%" >
+>>>>>>> register
         
     </div> 
 @endsection
 
 @section('right-content')
     <div class="container">
+<<<<<<< HEAD
         <div class="row justify-content-center align-items-center" style="height: 80vh;">
+=======
+        <div class="row justify-content-center align-items-center" >
+>>>>>>> register
             <div class="card" style="border: 0;border-radius: 10px;">
                 <div class="col-md-7 offset-md-5 text-primary mt-4"><strong>{{ __('ĐĂNG KÝ KHÁCH HÀNG') }}</strong></div>
                 <div class="card-body">
@@ -22,7 +31,11 @@
                             </ul>
                         </div>
                     @endif
+<<<<<<< HEAD
                     <form method="POST" action="{{ route('register') }}">
+=======
+                    <form method="POST" action="{{ route('registerOwner') }}">
+>>>>>>> register
                         @csrf
                         <div class="row mb-4">
                             <label for="Tên tài khoản" class="col-md-4 col-form-label text-md-end">{{ __('Tên đăng nhập') }}</label>
@@ -77,11 +90,19 @@
                                     <i id="toggleConfirmPassword" class="fas fa-regular fa-eye-slash"></i>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <span id="password-match-error" class="text-primary"></span>
                         </div>
                         <div class="col-md-7 offset-md-5 mt-2"> 
                             <p>Bạn có tài khoản? <a class="text-primary" href="{{ route('login') }}" >Đăng nhập</a></p>
                         </div> 
+=======
+                            <span id="password-match-error" class="text-warning"></span>
+                        </div>
+                        <div class="col-md-7 offset-md-6 mt-2"> 
+                            <p>Bạn có tài khoản? <a class="text-primary" href="{{ route('login') }}" >Đăng nhập</a></p>
+                        </div>
+>>>>>>> register
                         <div class="row mb-4">
                             <div class="col-md-7 offset-md-6 ">
                                 <button type="submit" class="btn btn-primary">
