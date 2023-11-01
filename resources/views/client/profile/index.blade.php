@@ -164,9 +164,9 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0 border-right">
                     <div class="user-info">
-                    <img class="img-profile img-circle img-responsive center-block" src="" alt="">
+                    <img class="avatar img-profile rounded-circle img-circle img-responsive center-block" src="https://www.freeiconspng.com/thumbs/account-icon/account-icon-8.png" alt="Image">
                     <ul class="meta list list-unstyled">
-                        <li class="name"><h3> Tên tài khoản </h3></li>
+                        <li class="name"><h3>Tên tài khoản</h3></li>
                     </ul>
                     </div>
                     <div class="list-group list-group-flush account-settings-links">
@@ -193,7 +193,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                                 <form method="POST" enctype="multipart/form-data" id="avatarForm">
                                     <label class="btn btn-outline-primary">
                                         Upload new photo
-                                        <input type="file" class="account-settings-fileinput">
+                                        <input type="file" class="file-upload account-settings-fileinput">
                                     </label> &nbsp;
                                     <button type="button" class="btn btn-default md-btn-flat">Reset</button>
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
@@ -349,6 +349,28 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(".file-upload").on('change', function() {
+            readURL(this);
+        });
+    });
+</script>
 
 @endsection
 
