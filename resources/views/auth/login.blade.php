@@ -13,10 +13,18 @@
 
        
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form method="POST" action="{{ route('login') }}">
-            @csrf
+          <form method="POST" action="{{ route('login-user') }}">
+            
             <!-- ... -->
-             
+
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }} </div>
+            @endif
+
+            @if(Session::has('fail'))
+            <div class="alert alert-danger">{{ Session::get('fail') }} </div>
+            @endif
+            @csrf
             <!--Tieude-->
             <div class="divider d-flex align-items-center my-6" style="color: #e77f10f8 ;">
               <p class="fw-bold" style="font-size: 22px;">Đăng nhập</p>
@@ -24,8 +32,8 @@
   
             <!-- Username input -->
             <div class="form-outline mb-4">
-              <label class="form-label" for="username">Tên tài khoản</label>
-              <input type="username" id="form3Example3" class="form-control form-control-lg" placeholder="" @error('username') is-invalid @enderror
+                        <label class="form-label" for="username">Tên tài khoản</label>
+              <input type="username" id="form3Example3" class="form-control form-control-lg" placeholder="username" @error('username') is-invalid @enderror
               name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
               @error('username')
@@ -35,14 +43,16 @@
               @enderror
               
             </div>
-  
+
+              <!---->
+             
             <!-- Password input -->
             <div class="form-outline mb-3">
                 <label class="form-label" for="password">Mật khẩu</label>               
                
                   <div class = "input-icon">
               
-                  <input type="password" id= "password" class="form-control form-control-lg " placeholder=""@error('password') is-invalid @enderror
+                  <input type="password" id= "password" class="form-control form-control-lg " placeholder="password"@error('password') is-invalid @enderror
                   name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
     
                   @error('password')
@@ -65,7 +75,7 @@
               <!-- Checkbox -->
               <div class="form-check mb-0">
                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                <label class="form-check-label" for="form2Example3">
+                <label class="form-check-label" for="form2Example3" name ='remember'>
                   Ghi nhớ mật khẩu
                 </label>
               </div>
@@ -76,7 +86,7 @@
 
               <!--BTN- ĐĂNG NHẬP-->
               <button type="submit" class="btn" style="background-color: #15b601; color: white; font-family: 'Arial', sans-serif;">
-                {{ __('Đăng nhập') }}
+                {{ __('login') }}
               </button>
               
 

@@ -13,7 +13,7 @@
                 </a>
                 
                 
-                <a  class="text-primary  py-4 px-md-10 justify-content-end " style="justify-content-end">Bạn muốn giúp đỡ ?</a>
+                <a  class="text-primary  py-4 px-md-10 justify-content-end " style="justify-content-end">Bạn muốn đăng ký tài khoản chủ sân ?</a>
                 
             </nav>
         </div>
