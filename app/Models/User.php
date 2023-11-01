@@ -46,4 +46,8 @@ public function permissions()
 {
     return $this->belongsToMany('App\Permission', 'user_permission');
 }
+public function user()
+{
+    return $this->belongsTo(User::class, 'username', 'username');
+}
 }
