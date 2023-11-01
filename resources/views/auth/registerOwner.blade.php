@@ -1,15 +1,15 @@
 @extends('client.layouts.app2')
 
 @section('left-content')
-    <div class="row justify-content-center align-items-center" style="height: 70vh;">
-        <img src="client/img/img_register.png" alt="Bức hình" >
+    <div class="row justify-content-center align-items-center" >
+        <img src="client/img/img_register.png" alt="Bức hình" width="100%" >
         
     </div> 
 @endsection
 
 @section('right-content')
     <div class="container">
-        <div class="row justify-content-center align-items-center" style="height: 75vh;">
+        <div class="row justify-content-center align-items-center" >
             <div class="card" style="border: 0;border-radius: 10px;">
                 <div class="col-md-7 offset-md-5 text-primary mt-4"><strong>{{ __('ĐĂNG KÝ CHỦ SÂN BÓNG') }}</strong></div>
                 <div class="card-body">
@@ -79,7 +79,7 @@
                             </div>
                             <span id="password-match-error" class="text-warning"></span>
                         </div>
-                        <div class="col-md-7 offset-md-5 mt-2"> 
+                        <div class="col-md-7 offset-md-6 mt-2"> 
                             <p>Bạn có tài khoản? <a class="text-primary" href="{{ route('login') }}" >Đăng nhập</a></p>
                         </div> 
                         <div class="row mb-4">

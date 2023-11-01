@@ -81,3 +81,27 @@ document.getElementById('bookingTable').addEventListener('click', function (even
         row.parentNode.removeChild(row);
     }
 });
+function bookField(fieldId) {
+    // Lấy dữ liệu từ bookingTable
+    var table = document.getElementById("bookingTable");
+    var rowData = [];
+    for (var i = 1; i < table.rows.length; i++) {
+        var row = table.rows[i];
+        var data = {
+            ngayDat: row.cells[0].textContent,
+            loaiSan: row.cells[1].textContent,
+            gioBatDau: row.cells[2].textContent,
+            gioKetThuc: row.cells[3].textContent
+        };
+        rowData.push(data);
+    }
+
+    // Kiểm tra xem mảng có dữ liệu hay không
+    if (rowData.length === 0) {
+        alert("Không có dữ liệu đặt sân.");
+    } else {
+        // Dữ liệu có sẵn, chuyển đến trang payment với tham số fieldId
+        var params = encodeURIComponent(JSON.stringify(rowData));
+        window.location.href = "/payment?bookingData=" + params + "&id=" + fieldId;
+    }
+}

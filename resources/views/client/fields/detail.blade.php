@@ -264,7 +264,7 @@
             </div>
             
             <div class="col-md-3 float-end">
-                <button class="btn btn-primary w-100 ">Đặt sân</button>
+                <button class="btn btn-primary w-100" onclick="bookField('{{$field->id}}')">Đặt sân</button>
             </div>
         </div>
     </div>
@@ -319,7 +319,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row gap-3 align-items-center">
                             <div class="d-flex align-items-center">
-                                <i class="fa fa-heart text-danger"></i>
+                                <i class="fa-regular fa fa-thumbs-up" style="color: #cbcbcb;"></i>
                                 <span class="ms-1 fs-10">Like</span>
                             </div>
 

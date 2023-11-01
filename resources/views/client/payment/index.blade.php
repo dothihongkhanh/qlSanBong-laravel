@@ -7,7 +7,12 @@
 <div class="container my-sm-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title text-center text-primary">1. Thông tin đơn đặt sân</h5>
+        <?php
+        $bookingData = json_decode(urldecode($_GET['bookingData']), true);
+        ?>
     </div>
+    
+<!-- Hiển thị dữ liệu trong trang -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -22,25 +27,18 @@
             </tr>
         </thead>
         <tr>
-            <td>Sân Chuyên Việt - Sân số 1</td>
-            <td>Sân 7</td>
-            <td>28/10/2023</td>
-            <td>8:00</td>
-            <td>10:00</td>
-            <td>2</td>
-            <td>170.000</td>
-            <td>340.000</td>
-        </tr>
-
-        <tr>
-            <td>Sân Chuyên Việt - Sân số 1</td>
-            <td>Sân 7</td>
-            <td>28/10/2023</td>
-            <td>8:00</td>
-            <td>10:00</td>
-            <td>2</td>
-            <td>170.000</td>
-            <td>340.000</td>
+            <?php foreach ($bookingData as $booking): ?>
+                <tr>
+                    <td>Sân Chuyên Việt - Sân số 1</td>
+                    <td><?php echo $booking['loaiSan']; ?></td>
+                    <td><?php echo $booking['ngayDat']; ?></td>
+                    <td><?php echo $booking['gioBatDau']; ?></td>
+                    <td><?php echo $booking['gioKetThuc']; ?></td>
+                    <td>2</td>
+                    <td>170.000</td>
+                    <td>340.000</td>
+                </tr>
+            <?php endforeach; ?>
         </tr>
     </table>
     <div class="col-12">
