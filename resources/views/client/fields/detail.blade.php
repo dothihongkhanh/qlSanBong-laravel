@@ -264,7 +264,7 @@
             </div>
             
             <div class="col-md-3 float-end">
-                <button class="btn btn-primary w-100 ">Đặt sân</button>
+                <button class="btn btn-primary w-100" onclick="bookField('{{$field->id}}')">Đặt sân</button>
             </div>
         </div>
     </div>
