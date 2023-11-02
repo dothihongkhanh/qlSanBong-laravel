@@ -17,12 +17,11 @@ return new class extends Migration
             $table->string('username');
             $table->unsignedBigInteger('id_sub_district');
             $table->text('description');
-            $table->string('address');
-            $table->string('locate');
+            $table->text('address');
+            $table->text('locate');
             $table->time('time_open', $precision = 0);
-            $table->time('time_close', $precision = 0);            
-            $table->string('price');
-            $table->string('avt');
+            $table->time('time_close', $precision = 0);
+            $table->text('avt');
             $table->timestamps();
 
             $table->foreign('id_sub_district')

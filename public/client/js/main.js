@@ -107,3 +107,28 @@
     
 })(jQuery);
 
+$(document).ready(function() {
+    // Bắt đầu theo dõi sự kiện thay đổi của select quận
+    $('#districtSelect').change(function() {
+        var districtId = $(this).val(); // Lấy giá trị quận đã chọn
+
+        // Gửi yêu cầu Ajax để lấy danh sách phường tương ứng với quận đã chọn
+        $.ajax({
+            url: '/getSubDistricts', // Đặt URL tương ứng với route xử lý
+            method: 'POST', // Hoặc 'GET' tùy theo route của bạn
+            data: {
+                districtId: districtId
+            },
+            success: function(data) {
+                // Xử lý dữ liệu trả về từ máy chủ và cập nhật select phường
+                var subDistrictSelect = $('#subDistrictSelect');
+                subDistrictSelect.empty(); // Xóa tất cả các option hiện có
+
+                // Thêm option phường dựa trên dữ liệu từ máy chủ
+                $.each(data.subDistricts, function(index, subDistrict) {
+                    subDistrictSelect.append(new Option(subDistrict.name_sub_district, subDistrict.id));
+                });
+            }
+        });
+    });
+});

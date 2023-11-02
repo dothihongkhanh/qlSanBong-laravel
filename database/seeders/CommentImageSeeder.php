@@ -32,7 +32,43 @@ class CommentImageSeeder extends Seeder
                 'id_image' => 2,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]
+            ],
+            [
+                'id_comment' => 3, 
+                'id_image' => 15,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id_comment' => 4, 
+                'id_image' => 12,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id_comment' => 4, 
+                'id_image' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id_comment' => 8, 
+                'id_image' => 6,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id_comment' => 6, 
+                'id_image' => 11,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id_comment' => 6, 
+                'id_image' => 5,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
             
         ]);
     }
