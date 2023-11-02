@@ -9,5 +9,13 @@
 <script src="{{ asset('client/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
 <script src="{{ asset('client/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <script src="{{ asset('client/js/togglePassword.js') }}"></script>
+<script src="{{ asset('client/js/custom-href.js') }}"></script>
 <!-- Template Javascript -->
 <script src="{{ asset('client/js/main.js') }}"></script>
+<script src="{{ asset('client/js/togglePassword.js') }}"></script>
+<script src="{{ asset('client/js/password-match.js') }}"></script>
+<script src="{{ asset('client/js/detail_field.js') }}"></script>
+
+<!-- tab -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

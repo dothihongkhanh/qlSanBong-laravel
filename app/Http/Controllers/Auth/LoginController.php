@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Auth\Events\Login;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -15,13 +17,6 @@ use App\Models\User_permission;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
-
-    
     public function login(Request $request)
 {
     $request->validate([
@@ -44,11 +39,11 @@ class LoginController extends Controller
                 // Xác định trang chuyển hướng dựa trên id_permission
                 switch ($idPermission) {
                     case 1:
-                        return redirect('admin home page');
+                        return redirect('admin home page')->with('username', $request->username);
                     case 2:
-                        return redirect('owner home page');
+                        return redirect('owner home page')->with('username', $request->username);
                     case 3:
-                        return redirect('client home page');
+                        return redirect('')->with('username', $request->username);
                     default:
                         // Xử lý trường hợp không xác định
                         return back()->with('fail', 'Không có quyền truy cập');
@@ -62,12 +57,13 @@ class LoginController extends Controller
     } else {
         return back()->with('fail', 'Tên đăng nhập không đúng');
     }
+
 }
 
 
         public function dashboard_client()
         {
-            return view('auth.home_client');
+            return view('');
         }
         public function dashboard_owner()
         {
@@ -77,5 +73,14 @@ class LoginController extends Controller
         {
             return view('admin.index');
         }
+
+    // 
+    public function logout()
+    {
+        // Xóa tất cả session và đăng xuất người dùng
+        Auth::logout();
+        session()->flush();
         
+        return redirect()->route('login');
+    }
 }

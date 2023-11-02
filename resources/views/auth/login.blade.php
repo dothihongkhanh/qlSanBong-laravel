@@ -1,7 +1,7 @@
 
 @extends('client.layouts.app-login')
 @section('content')
-<!DOCTYPE html>
+
 <section class="vh-100">
     <!--Image--><br>
     <div class="container-fluid h-custom">

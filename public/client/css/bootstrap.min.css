@@ -1240,13 +1240,21 @@ progress {
         flex: 0 0 auto;
         width: 100%
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> register
     .col-md-13 {
         flex: 0 0 auto;
         width: 30%
     }
 
     .col-md-14 {
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> register
         display: flex;
         flex: 0 0 auto;
         width: 40%
