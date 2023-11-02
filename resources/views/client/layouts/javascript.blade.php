@@ -11,6 +11,7 @@
 
 <!-- Template Javascript -->
 <script src="{{ asset('client/js/main.js') }}"></script>
+<script src="{{ asset('client/js/detail_field.js') }}"></script>
 
 <!-- tab -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

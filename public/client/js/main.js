@@ -107,3 +107,40 @@
     
 })(jQuery);
 
+
+// HEADER
+document.addEventListener('DOMContentLoaded', function() {
+    var navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function(event) {
+        navLinks.forEach(function(navLink) {
+          navLink.classList.remove('active');
+        });
+  
+        link.classList.add('active');
+  
+        // Lưu trạng thái active vào sessionStorage
+        var href = link.getAttribute('href');
+        if (href) {
+          sessionStorage.setItem('activeNavLink', href);
+        }
+      });
+    });
+  
+    // Kiểm tra và thêm lại lớp active sau khi trang được tải lại
+    var activeNavLink = sessionStorage.getItem('activeNavLink');
+    if (activeNavLink) {
+      var activeLink = document.querySelector('.navbar-nav .nav-link[href="' + activeNavLink + '"]');
+      if (activeLink) {
+        activeLink.classList.add('active');
+        var homeLink = document.querySelector('.nav-item.nav-link.active');
+        if (homeLink) {
+          homeLink.classList.remove('active');
+        }
+        
+      }
+    }
+   
+    
+  });
