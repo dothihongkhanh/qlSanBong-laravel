@@ -1,19 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Auth\Events\Login;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use App\Models\User ;
 use App\Models\User_permission;
+use App\Http\Controllers\Auth\Auth;
 
 class LoginController extends Controller
 {
@@ -77,10 +73,11 @@ class LoginController extends Controller
     // 
     public function logout()
     {
-        // Xóa tất cả session và đăng xuất người dùng
-        Auth::logout();
+        // Đăng xuất người dùng
+        auth()->logout();
         session()->flush();
         
         return redirect()->route('login');
-    }
+    }   
+   
 }

@@ -28,14 +28,21 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ route('login') }}"  id="loginButton" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
-                        @if(session('username'))
-                        <i class="fa fa-user"></i>  {{ session('username') }}
-                        
-                        @else
-                            Đăng nhập hihi<i class="fa fa-user ms-3"></i>
-                        @endif
+                    @if(session('username'))
+                    <div class="dropdown">
+                        <button class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block dropdown-toggle" type="button" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>  {{ session('username') }}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">Xem thông tin cá nhân</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" id="loginButton" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
+                        Đăng nhập <i class="fa fa-user ms-3"></i>
                     </a>
+                @endif
                 </div>
             </nav>
         </div>

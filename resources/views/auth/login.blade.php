@@ -86,7 +86,7 @@
 
               <!--BTN- ĐĂNG NHẬP-->
               <button type="submit" class="btn" style="background-color: #15b601; color: white; font-family: 'Arial', sans-serif;">
-                {{ __('login') }}
+                {{ __('Đăng nhập') }}
               </button>
               
 
