@@ -9,12 +9,13 @@ use App\Models\FieldChild;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\User_permission;
+use App\Models\District;
+use App\Models\SubDistrict;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        
         $fields = Field::all(); // Lấy tất cả dữ liệu từ bảng Fields
         $owner = User_permission::where('id_permission', 2)->count();
         $client = User_permission::where('id_permission', 3)->count();
@@ -49,6 +50,8 @@ class HomeController extends Controller
                 'max' => $maxPrice,
             ];
         }
+        $districts = District::all();
+        $subDistricts = SubDistrict::all();
         
         return view('client.home.index', [
             'fields' => $fields, 
@@ -56,8 +59,11 @@ class HomeController extends Controller
             'priceByField' => $priceByField,
             'owner' => $owner,
             'client' => $client,
-            'fieldCount' => $fieldCount, 
+            'fieldCount' => $fieldCount,
+            'districts' => $districts,
+            'subDistricts' => $subDistricts, 
         ]);
         
     }
+    
 }

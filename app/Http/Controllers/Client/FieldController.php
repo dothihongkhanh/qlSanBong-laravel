@@ -11,6 +11,8 @@ use App\Models\Image;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\CommentImage;
+use App\Models\District;
+use App\Models\SubDistrict;
 
 use App\Models\Order_detail;
 
@@ -52,11 +54,15 @@ class FieldController extends Controller
             ];
 
         }  
+        $districts = District::all();
+        $subDistricts = SubDistrict::all();
 
         return view('client.fields.index', [
             'fields' => $fields, 
             'averageStars' => $averageStarsByField,
             'priceByField' => $priceByField,
+            'districts' => $districts,
+            'subDistricts' => $subDistricts,
         ]);
     }
     public function detail(Request $request)
