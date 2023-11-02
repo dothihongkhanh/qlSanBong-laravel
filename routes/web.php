@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
+use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
@@ -56,3 +58,20 @@ Route::get('/payment', function () {
 Route::get('/payment_succsess', function () {
     return view('client.payment.success_payment');
 });
+Route::get('/loginform', function () {
+    return view('auth.login');
+})->name('login');
+
+// Route::post('/login2', 'App\Http\Controllers\Auth\LoginController@login')->name('auth.login');
+
+
+Route::post('/login', [LoginController::class, 'login'])->name('login-user');
+//Login--
+
+
+Route::get('/owner home page',[LoginController::class,'dashboard_owner'])->name('owner page');
+
+Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name('admin page');
+
+
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');

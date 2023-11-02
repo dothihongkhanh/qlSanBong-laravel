@@ -12,4 +12,10 @@ class User_permission extends Model
 
     // Các trường của bảng field_image
     protected $fillable = ['id_permission', 'username'];
+
+    
+    public function userPermission()
+    {
+        return $this->hasOne(UserPermission::class, 'username', 'username');
+    }
 }
