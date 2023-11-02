@@ -2,17 +2,37 @@
 @extends('client.layouts.app')
 @section('title', 'Trang thanh toán')
 @section('content')
+<?php
 
+use Illuminate\Support\Facades\DB;
+use App\Models\FieldChild;
+?>
 <!-- thong tin dat san  -->
 <div class="container my-sm-4">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
         <h5 class="section-title text-center text-primary">1. Thông tin đơn đặt sân</h5>
         <?php
         $bookingData = json_decode(urldecode($_GET['bookingData']), true);
+
+        // Lấy giá trị ID sân từ URL
+        $fieldId = $_GET['id'];
+
+        // Thực hiện truy vấn vào cơ sở dữ liệu để lấy tên sân tương ứng
+        $field = DB::table('field')->where('id', $fieldId)->first();
+
+        // Kiểm tra xem có dữ liệu tìm thấy hay không
+        if ($field) {
+            $fieldName = $field->name_field;
+            $fieldAddress = $field->address;
+        } else {
+            $fieldName = 'Sân không tồn tại'; // Hoặc giá trị mặc định khác nếu cần
+        }
+
+        $totalAll = 0; // Biến để lưu tổng thành tiền
         ?>
     </div>
-    
-<!-- Hiển thị dữ liệu trong trang -->
+
+    <!-- Hiển thị dữ liệu trong trang -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,19 +47,39 @@
             </tr>
         </thead>
         <tr>
-            <?php foreach ($bookingData as $booking): ?>
-                <tr>
-                    <td>Sân Chuyên Việt - Sân số 1</td>
-                    <td><?php echo $booking['loaiSan']; ?></td>
-                    <td><?php echo $booking['ngayDat']; ?></td>
-                    <td><?php echo $booking['gioBatDau']; ?></td>
-                    <td><?php echo $booking['gioKetThuc']; ?></td>
-                    <td>2</td>
-                    <td>170.000</td>
-                    <td>340.000</td>
-                </tr>
-            <?php endforeach; ?>
+            <?php foreach ($bookingData as $booking) :
+                $loaiSan = $booking['loaiSan']; // Lấy giá trị 'loaiSan' từ mảng $booking
+
+                // Lấy thông tin của sân con từ cơ sở dữ liệu
+                $fieldChild = FieldChild::find($loaiSan);
+
+                if ($fieldChild) {
+                    $childFieldPrice = $fieldChild->price; // Giá của sân con
+                } else {
+                    $childFieldPrice = 0; // Giá mặc định nếu không tìm thấy sân con
+                }
+
+
+            ?>
+        <tr>
+            <td>{{ $fieldName }}</td>
+            <td><?php echo $booking['loaiSan']; ?></td>
+            <td><?php echo $booking['ngayDat']; ?></td>
+            <td><?php echo $booking['gioBatDau']; ?></td>
+            <td><?php echo $booking['gioKetThuc']; ?></td>
+            <td><?php echo $totalTime = date('H:i', strtotime($booking['gioKetThuc']) - strtotime($booking['gioBatDau'])) ?></td>
+            <td><?php echo number_format($childFieldPrice, 0, '.', '.'); ?></td>
+            <?php
+                $totalTimeInHours = (strtotime($booking['gioKetThuc']) - strtotime($booking['gioBatDau'])) / 3600;
+            ?>
+            <td><?php echo number_format($totalTimeInHours * $childFieldPrice, 0, '.', '.'); ?></td>
+            <?php
+                $totalAll += ($totalTimeInHours * $childFieldPrice); // Cộng giá trị thành tiền vào tổng
+            ?>
         </tr>
+    <?php endforeach; ?>
+
+    </tr>
     </table>
     <div class="col-12">
         <div class="row">
@@ -65,7 +105,7 @@
                         <p>Tổng tiền sân</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b>340.000</b>
+                        <b><?php echo number_format($totalAll, 0, '.', '.'); ?> VNĐ</b>
                     </div>
                     <div class="col-7">
                         <p>Giảm giá</p>
@@ -77,13 +117,13 @@
                         <p>Tổng thanh toán</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b class="text-danger">340.000</b>
+                        <b class="text-danger"><?php echo number_format($totalAll, 0, '.', '.'); ?> VNĐ</b>
                     </div>
                     <div class="col-7">
                         <p>Tiền đặt cọc (20%)</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b class="text-danger">170.000</b>
+                        <b class="text-danger"><?php echo number_format($totalAll * 20 / 100, 0, '.', '.'); ?> VNĐ</b>
                     </div>
                 </div>
 
@@ -153,7 +193,7 @@
                 </div>
             </div>
             <div class="tab-pane" id="deposit">
-            <div class="row container d-flex justify-content-center">
+                <div class="row container d-flex justify-content-center">
                     <div class="col-lg-12 col-xl-6">
                         <div class="card border-0">
                             <div class="row">
@@ -213,15 +253,27 @@
                         <p>Tổng thanh toán</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b class="text-danger">340.000</b>
+                        <b class="text-danger"><?php echo number_format($totalAll, 0, '.', '.'); ?> VNĐ</b>
                     </div>
                     <div class="col-7">
                         <p>Ngày đặt</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b>15:00 - 01/11/2023</b>
+                        <b><?php
+                            date_default_timezone_set('Asia/Ho_Chi_Minh'); // Đặt múi giờ thành múi giờ GMT+7 (Asia/Ho_Chi_Minh)
+                            $currentDateTime = date('Y-m-d H:i:s'); // Lấy ngày và giờ hiện tại
+                            echo $currentDateTime;
+                            ?></b>
                     </div>
-                    <p class="mt-sm-3">Bạn vui lòng đến 123 Nguyễn Tất Thành để thanh toán. Sau <b>3 ngày</b> kể từ ngày tạo phiếu, nếu bạn không thanh toán, đơn đặt sân của bạn sẽ bị hủy.</p>
+                    <p class="mt-sm-3">Bạn vui lòng đến <b>{{$fieldAddress}}</b> để thanh toán.
+                        <br>Sau <b>2 ngày (<?php
+                                            $currentDateTime = new DateTime(); // Lấy thời gian hiện tại
+                                            $currentDateTime->modify('+3 days'); // Thêm 3 ngày vào thời gian hiện tại
+                                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                            $newDateTime = $currentDateTime->format('Y-m-d H:i:s'); // Định dạng lại thời gian
+                                            echo $newDateTime;
+                                            ?>)</b> kể từ ngày tạo phiếu, nếu bạn không thanh toán, đơn đặt sân của bạn sẽ bị hủy.
+                    </p>
 
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center">
@@ -246,15 +298,28 @@
                         <p>Tổng đặt cọc</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b class="text-danger">68.000</b>
+                        <b class="text-danger"><?php echo number_format($totalAll * 20 / 100, 0, '.', '.'); ?> VNĐ</b>
                     </div>
                     <div class="col-7">
                         <p>Ngày đặt</p>
                     </div>
                     <div class="col-4 float-end">
-                        <b>15:00 - 01/11/2023</b>
+                        <b><?php
+                            date_default_timezone_set('Asia/Ho_Chi_Minh'); // Đặt múi giờ thành múi giờ GMT+7 (Asia/Ho_Chi_Minh)
+                            $currentDateTime = date('Y-m-d H:i:s'); // Lấy ngày và giờ hiện tại
+                            echo $currentDateTime;
+                            ?></b>
                     </div>
-                    <p class="mt-sm-3">Bạn vui lòng đến 123 Nguyễn Tất Thành để đặt cọc. Sau <b>3 ngày</b> kể từ ngày tạo phiếu, nếu bạn không đặt cọc, đơn đặt sân của bạn sẽ bị hủy.</p>
+                    <p class="mt-sm-3">Bạn vui lòng đến <b>{{$fieldAddress}}</b> để đặt cọc.
+                        <br>Số tiền còn lại <b class="text-danger"> <?php echo number_format($totalAll - ($totalAll * 20 / 100), 0, '.', '.'); ?> VNĐ</b> sẽ được thanh toán khi nhận sân.
+                        <br>Sau <b>2 ngày(<?php
+                                            $currentDateTime = new DateTime(); // Lấy thời gian hiện tại
+                                            $currentDateTime->modify('+3 days'); // Thêm 3 ngày vào thời gian hiện tại
+                                            date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                            $newDateTime = $currentDateTime->format('Y-m-d H:i:s'); // Định dạng lại thời gian
+                                            echo $newDateTime;
+                                            ?>)</b> kể từ ngày tạo phiếu, nếu bạn không đặt cọc, đơn đặt sân của bạn sẽ bị hủy.
+                    </p>
 
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center">

@@ -44,7 +44,7 @@
         <!-- Spinner End -->
 
         <!-- Header Start -->
-        @include('client.layouts.header-login')
+        @include('client.layouts.header-register')
         <!-- Header End -->
         @yield('content')
 

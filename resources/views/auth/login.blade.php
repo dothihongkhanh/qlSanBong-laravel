@@ -92,7 +92,7 @@
 
             <!-- -->
             <div>
-              <p class="small fw-bold mt-2 pt-1 mb-0">Bạn chưa có tài khoản? <a href="#!" class="link-danger">Đăng ký tài khoản</a></p>
+              <p class="small fw-bold mt-2 pt-1 mb-0">Bạn chưa có tài khoản? <a href="{{ route('register') }}" class="link-danger">Đăng ký tài khoản</a></p>
             </div>
             <br>
             <!-- -->

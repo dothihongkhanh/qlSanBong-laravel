@@ -35,17 +35,17 @@ class User extends Authenticatable
     ];
 
     public function canLogin()
-{
-    // Kiểm tra trong bảng user_permission hoặc bất kỳ quyền nào bạn đã định nghĩa
-    return $this->permissions->contains('name', 'login');
-}
+    {
+        // Kiểm tra trong bảng user_permission hoặc bất kỳ quyền nào bạn đã định nghĩa
+        return $this->permissions->contains('name', 'login');
+    }
 
-public function permissions()
-{
-    return $this->belongsToMany('App\Permission', 'user_permission');
-}
-public function user()
-{
-    return $this->belongsTo(User::class, 'username', 'username');
-}
-}
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Permission', 'user_permission');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'username', 'username');
+    }
+    }

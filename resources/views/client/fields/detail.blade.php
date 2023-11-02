@@ -224,7 +224,7 @@
                             <label class="ml-3 form-control-placeholder" for="#"> Sân:</label>
                             <select id= "inputFieldChild"class="form-select" id="mySelect">
                                 @foreach ($fieldChilds as $child)
-                                <option>{{ $child->name_field_child }}</option>
+                                <option>{{ $child->id }} - {{ $child->name_field_child }} - {{ $child->type_field_child }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -249,10 +249,10 @@
         </div>
         <div class="col-lg-7">
             <div class="row g-2">
-                <table id="bookingTable" data-field-open-time="{{ $field->time_open }}" data-field-close-time="{{ $field->time_close }}" style="border: 1px solid #a19898;">
+                <table id="bookingTable" data-field-open-time="{{ $field->time_open }}" data-field-close-time="{{ $field->time_close }}" class="table table-striped">
 
                     <thead>
-                        <tr style="border: 1px solid #857e7e;">
+                        <tr>
                             <th>Ngày đặt</th>
                             <th>Loại sân</th>
                             <th>Giờ bắt đầu</th>
