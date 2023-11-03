@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\User_permission;
+use App\Models\User_Permission;
 use Carbon\Carbon; // Thêm dòng này
 
 
@@ -36,7 +36,7 @@ class RegisterOwnerController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-        $userPermission = new User_permission();
+        $userPermission = new User_Permission();
         $userPermission->id_permission = 2;
         $userPermission->username = $user->username;
         $userPermission->save();
