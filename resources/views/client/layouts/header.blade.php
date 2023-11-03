@@ -35,7 +35,7 @@
                                     style="width: 40px;"> {{ $user->account_name }}
                             </a>
                             <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Thông tin cá nhân</a>
+                                <a href="{{ route('profile') }}" class="dropdown-item">Thông tin cá nhân</a>
                                 <a href="{{ route('logout') }}" class="dropdown-item">Đăng xuất</a>
                             </div>
                         </div>
