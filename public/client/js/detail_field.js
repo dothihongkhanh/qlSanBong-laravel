@@ -63,8 +63,6 @@ document.getElementById('addBooking').addEventListener('click', function () {
         cellActions.innerHTML = '<button class="btn btn-primary w-100 editBtn" >Edit</button>';
 
         // Đặt lại các phần tử input về giá trị mặc định
-        document.getElementById('inputDate').value = '';
-        document.getElementById('inputFieldChild').value = '';
         document.getElementById('inputStartTime').value = '';
         document.getElementById('inputEndTime').value = '';
     }
