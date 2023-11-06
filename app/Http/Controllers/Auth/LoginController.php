@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\User_Permission;
+use App\Models\UserPermission;
 
 class LoginController extends Controller
 {
@@ -29,7 +29,7 @@ class LoginController extends Controller
         if ($user) {
             if ($request->password === $user->password) {
                 session()->put('username', $request->username);
-                $userPermission = User_Permission::where('username', $request->username)->first();
+                $userPermission = UserPermission::where('username', $request->username)->first();
 
                 if ($userPermission) {
                     $idPermission = $userPermission->id_permission;

@@ -8,7 +8,7 @@ use App\Models\Field;
 use App\Models\FieldChild;
 use App\Models\Comment;
 use App\Models\User;
-use App\Models\User_permission;
+use App\Models\UserPermission;
 use App\Models\District;
 use App\Models\SubDistrict;
 
@@ -17,8 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $fields = Field::all(); // Lấy tất cả dữ liệu từ bảng Fields
-        $owner = User_permission::where('id_permission', 2)->count();
-        $client = User_permission::where('id_permission', 3)->count();
+        $owner = UserPermission::where('id_permission', 2)->count();
+        $client = UserPermission::where('id_permission', 3)->count();
         $fieldCount =Field::count();
         $averageStarsByField = []; // Mảng lưu trữ trung bình số sao cho từng sân
         $priceByField = []; // Mảng lưu trữ giá trị price tối thiểu và tối đa
