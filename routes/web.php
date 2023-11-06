@@ -75,3 +75,6 @@ Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name(
 
 
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/client/profile', function () {
+    return view('client.profile.index');
+})->name('profile');
