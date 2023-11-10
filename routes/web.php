@@ -26,7 +26,7 @@ Route::get('/home', function () {
 Route::get('/fields', [FieldController::class, 'index'])->name('client.fields.index');
 Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.detail');
 
-Route::match(['GET', 'POST'], '/vnpay_payment', [OnlinePaymentController::class, 'vnpay_payment']);
+Route::post('/vnpay_payment', [OnlinePaymentController::class, 'vnpay_payment']);
 
 Route::get('/payment', function () {
     return view('client.payment.index');

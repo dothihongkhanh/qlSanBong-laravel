@@ -158,7 +158,8 @@ use App\Models\FieldChild;
                                     <div class="border-0 shadow">
                                         <form action="{{ url('/vnpay_payment') }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg" style="height:110px"></button>
+                                            <input name="total" value="{{ $totalAll }}" type="hidden">
+                                            <button type="submit" name="redirect" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg" style="height:110px"></button>
                                         </form>
                                     </div>
                                 </div>
@@ -201,7 +202,8 @@ use App\Models\FieldChild;
                                     <div class="border-0 shadow">
                                         <form action="{{ url('/vnpay_payment') }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg" style="height:110px"></button>
+                                            <input name="total" value="{{ $totalAll * 20 / 100 }}" type="hidden">
+                                            <button type="submit" name="redirect" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg" style="height:110px"></button>
                                         </form>
                                     </div>
                                 </div>
