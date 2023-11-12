@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,15 +78,3 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/client/profile', function () {
     return view('client.profile.index');
 })->name('profile');
-
-Route::get('chinh-sach-rieng-tu',function(){
-    return '<h1>Chính sách riêng tư</h1>';
-});
-
-Route::get('auth/facebook',function(){
-    return Socialite::driver('facebook')->redirect();
-});
-
-Route::get('auth/facebook/callback',function(){
-    return 'Callback Login Facebook';
-});
