@@ -12,11 +12,11 @@ class OnlinePaymentController extends Controller
         $data = $request -> all();
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "https://localhost/vnpay_php/vnpay_return.php";
+        $vnp_Returnurl = "http://127.0.0.1:8000/payment_succsess";
         $vnp_TmnCode = "CGXZLS0Z"; //Mã website tại VNPAY 
         $vnp_HashSecret = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN"; //Chuỗi bí mật
 
-        $vnp_TxnRef = '14789'; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_TxnRef = rand(00,9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'thanh toan hoa don';
         $vnp_OrderType = 'xtmn';
         $vnp_Amount =  $data['total'] * 100;
