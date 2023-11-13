@@ -78,3 +78,24 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/client/profile', function () {
     return view('client.profile.index');
 })->name('profile');
+
+Route::get('/manage_field', function () {
+    return view('owner.fields.manage_field');
+});
+
+Route::get('/post_field', function () {
+    return view('owner.fields.post_field');
+});
+
+Route::get('/approve_order', function () {
+    return view('owner.order.approve_order');
+});
+Route::get('/see_order', function () {
+    return view('owner.order.see_order');
+});
+Route::get('/history_order', function () {
+    return view('owner.order.history_order');
+});
+Route::get('/statistical', function () {
+    return view('owner.revenue.statistical');
+});
