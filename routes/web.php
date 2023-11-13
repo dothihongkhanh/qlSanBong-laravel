@@ -15,7 +15,6 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 use App\Http\Controllers\Client\HomeController;
-use App\Http\Controllers\FaceBookController;
 use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
 use Illuminate\Auth\Events\Login;
@@ -84,4 +83,9 @@ Route::get('/client/profile', function () {
 Route::prefix('facebook')->name('facebook.')->group( function(){
     Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
     Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
+});
+// Google Login URL
+Route::prefix('google')->name('google.')->group( function(){
+    Route::get('login', [GoogleController::class, 'loginWithgoogle'])->name('login');
+    Route::any('callback',[GoogleController::class,'callbackFromGoogle'])->name('callback');
 });

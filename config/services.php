@@ -37,4 +37,9 @@ return [
         'redirect' => 'http://127.0.0.1:8000/auth/facebook/callback/'
     ],
 
+    'google' => [
+        'client_id' => '', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => '', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback/'
+    ],
 ];
