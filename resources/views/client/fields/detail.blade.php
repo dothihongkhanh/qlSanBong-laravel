@@ -1,8 +1,12 @@
 <!-- Page Header Start -->
 @extends('client.layouts.app')
 @section('title', $field->name_field)
-@section('content')
+@php
+    $isLoggedIn = session('username') ? true : false;
+@endphp
+<div id="myContainer" data-is-logged-in="{{ $isLoggedIn }}"></div>
 
+@section('content')
 <!-- đường dẫn -->
 <!-- close đường dẫn -->
 <div class="container mt-3">
@@ -75,8 +79,26 @@
         <!-- col end -->
         <div class="col-lg-7 mt-2">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body"><h4 style="float: right;"><a href=""
+                    onclick="shareOnFacebook()" data-tooltip="Chia sẻ trên Facebook">
+                    <i class="fab fa-facebook" style="color: #005eff;"></i>
+                    </a> <a href=""
+                    onclick="shareOnFacebook()" data-tooltip="Chia sẻ trên Facebook">
+                    <i class="fab fa-google" style="color: #005eff;"></i>
+                    </a> <a href=""
+                    onclick="shareOnFacebook()" data-tooltip="Chia sẻ trên Facebook">
+                    <i class="fab fa-twitter" style="color: #005eff;"></i>
+                    </a></h4>
                     <h1 class="h2 text-primary">{{ $field->name_field }}</h1>
+                    <!-- Facebook Share -->
+                    
+                    <script>
+                        function shareOnFacebook() {
+                            var currentUrl = window.location.href;
+                            var facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentUrl);
+                            window.open(facebookShareUrl, '_blank');
+                        }
+                    </script>
                     <p class="py-2">
                         <span class="list-inline-item text-dark">{{ $averageStars }}<i class="fa fa-star text-primary"></i> | {{$commentCount}} Comments</span>
                     </p>
@@ -244,6 +266,7 @@
                 </div>
                 <div class="col-md-12">
                     <button class="btn btn-primary w-100" id="addBooking">Thêm sân</button>
+                    
                 </div>
             </div>
         </div>
