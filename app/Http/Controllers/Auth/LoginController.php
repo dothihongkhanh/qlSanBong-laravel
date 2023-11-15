@@ -38,7 +38,7 @@ class LoginController extends Controller
                         case 1:
                             return redirect()->route('admin_home');
                         case 2:
-                            return redirect()->route('owner_home');
+                            return redirect()->route('owner-home');
                         case 3:
                             return redirect('');
                         default:

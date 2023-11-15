@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'username', 'username');
     }
+    public function fields()
+    {
+        return $this->hasMany(Field::class,'username');
     }
+}

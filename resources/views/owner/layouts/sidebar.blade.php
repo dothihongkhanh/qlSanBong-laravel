@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/owner-home">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Tổng quan</span></a>
     </li>
@@ -33,7 +33,7 @@
     <li class="nav-item">
         <a class="nav-link" href="/manage_field">
             <i class="fas fa-folder-open"></i>
-            <span>Quản lý bài đăng</span></a>
+            <span>Quản lý sân</span></a>
     </li>
 
     <!-- Divider -->
