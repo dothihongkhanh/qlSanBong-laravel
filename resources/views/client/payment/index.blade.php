@@ -41,7 +41,7 @@
             <div class="col-4">
                 <label for="message">Để lại lời nhắn cho chúng tôi:</label>
                 <div class="form-floating">
-                    <textarea class="form-control" id="message" style="height: 100px"></textarea>
+                    <textarea id="note" class="form-control" id="message" style="height: 100px"></textarea>
                 </div>
             </div>
             <div class="col-3"></div>
@@ -180,8 +180,10 @@
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center">
 
-                    <form id="datSanForm" action="{{ route('payment') }}" method="POST">
+                    <form id="datSanForm" action="{{ url('/payment') }}" method="POST">
+                        
                         <button type="submit" id="datSanButton">Đặt sân</button>
+                        @csrf
                     </form>
                 </div>
             </div>

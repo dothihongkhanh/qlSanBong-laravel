@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row justify-content-center align-items-center" >
             <div class="card" style="border: 0;border-radius: 10px;">
-                <div class="col-md-7 offset-md-5 text-primary mt-4"><strong>{{ __('ĐĂNG KÝ KHÁCH HÀNG') }}</strong></div>
+                <div class="col-md-7 offset-md-5 text-primary mt-4"><strong>{{ __('ĐĂNG KÝ CHỦ SÂN BÓNG') }}</strong></div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -22,7 +22,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('registerOwner') }}">
                         @csrf
                         <div class="row mb-4">
                             <label for="Tên tài khoản" class="col-md-4 col-form-label text-md-end">{{ __('Tên đăng nhập') }}</label>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-7 offset-md-6 mt-2"> 
                             <p>Bạn có tài khoản? <a class="text-primary" href="{{ route('login') }}" >Đăng nhập</a></p>
-                        </div>
+                        </div> 
                         <div class="row mb-4">
                             <div class="col-md-7 offset-md-6 ">
                                 <button type="submit" class="btn btn-primary">

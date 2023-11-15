@@ -8,9 +8,12 @@
 <script src="{{ asset('client/lib/tempusdominus/js/moment.min.js') }}"></script>
 <script src="{{ asset('client/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
 <script src="{{ asset('client/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-
+<script src="{{ asset('client/js/togglePassword.js') }}"></script>
+<script src="{{ asset('client/js/custom-href.js') }}"></script>
 <!-- Template Javascript -->
 <script src="{{ asset('client/js/main.js') }}"></script>
+<script src="{{ asset('client/js/togglePassword.js') }}"></script>
+<script src="{{ asset('client/js/password-match.js') }}"></script>
 <script src="{{ asset('client/js/detail_field.js') }}"></script>
 
 <!-- tab -->

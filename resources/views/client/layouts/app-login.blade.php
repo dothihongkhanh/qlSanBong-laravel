@@ -44,11 +44,12 @@
         <!-- Spinner End -->
 
         <!-- Header Start -->
-        @include('client.layouts.header')
+        @include('client.layouts.header-register')
         <!-- Header End -->
         @yield('content')
 
-        
+           
+
         <!-- Footer Start -->
         @include('client.layouts.footer')
         <!-- Footer End -->
@@ -60,6 +61,7 @@
 
     <!-- JavaScript Libraries -->
     @include('client.layouts.javascript')
+    
 </body>
 
 </html>

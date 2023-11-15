@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
-
-    protected $table = 'order'; // Tên của bảng trong cơ sở dữ liệu
+    protected $table = 'order'; // Tên bảng trong cơ sở dữ liệu
     protected $primaryKey = 'id'; // Khóa chính của bảng
-
-    // Các trường của bảng field
-    protected $fillable = ['username', 'time_create', 'status'];
+    
+    protected $fillable = ['username', 'time_create', 'status', 'created_at', 'updated_at'];
 }

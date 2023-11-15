@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class District extends Model
 {
-    protected $table = 'image'; // Tên bảng trong cơ sở dữ liệu
+    protected $table = 'district'; // Tên của bảng trong cơ sở dữ liệu
     protected $primaryKey = 'id'; // Khóa chính của bảng
-    protected $fillable = ['url', 'created_at', 'updated_at'];
+    protected $fillable = ['name_district','created_at','updated_at'];
 }

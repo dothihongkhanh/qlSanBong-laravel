@@ -224,7 +224,7 @@
                             <label class="ml-3 form-control-placeholder" for="#"> Sân:</label>
                             <select id= "inputFieldChild"class="form-select" id="mySelect">
                                 @foreach ($fieldChilds as $child)
-                                <option>{{ $child->id }} - {{ $child->name_field_child }} - {{ $child->type_field_child }}</option>
+                                <option>{{ $child->id }}</option>
                                 @endforeach
                             </select>
                         </div>
