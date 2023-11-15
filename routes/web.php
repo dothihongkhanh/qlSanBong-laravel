@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
+use App\Http\Controllers\Client\OrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
@@ -28,9 +29,7 @@ Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.d
 
 Route::post('/vnpay_payment', [OnlinePaymentController::class, 'vnpay_payment']);
 
-Route::get('/payment', function () {
-    return view('client.payment.index');
-});
+Route::get('/payment', [OrderController::class, 'index']);
 
 Route::get('/payment_succsess', function () {
     return view('client.payment.success_payment');
