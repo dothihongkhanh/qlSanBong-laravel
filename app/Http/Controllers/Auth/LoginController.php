@@ -61,7 +61,7 @@ class LoginController extends Controller
 
     public function dashboard_owner()
     {
-        return view('owner.index'); // Thay đổi view tương ứng
+        return view('owner.home.index'); // Thay đổi view tương ứng
     }
 
     public function dashboard_admin()
