@@ -108,6 +108,9 @@
                   <i class="fab fa-google"></i>
                 </button>              
             </div>
+            <a href="{{ route('login-google') }}" class="btn btn-facebook btn-user btn-block">
+              <i class="fab fa-google fa-fw"></i>
+              Login with Google</a>
   
           </form>
         </div>

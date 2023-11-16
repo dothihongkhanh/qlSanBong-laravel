@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
+use App\Http\Controllers\GoogleAuthController;
 use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
@@ -78,3 +79,6 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/client/profile', function () {
     return view('client.profile.index');
 })->name('profile');
+
+//Login with google
+Route::get('googleLogin',[GoogleAuthController::class,'googleLogin'])->name('login-google');

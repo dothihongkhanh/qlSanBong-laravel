@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '927992496813-gml2nojomurmq09plib7u8h3mtpdh91j.apps.googleusercontent.com', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => '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', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => 'http://localhost:8000/auth/google/callback'
+    ],
+
 ];
