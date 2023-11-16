@@ -258,7 +258,22 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                             <p></p>
                         </div>
                         <div class="tab-pane fade" id="account-history-order-field">
-                            
+                            <div class="card-body pb-2">
+                                <h5 class="mb-4">Lịch sử đặt sân</h5>
+                                <div class="form-group">
+                                    <label class="switcher">
+                                        <input type="checkbox" class="switcher-input" checked>
+                                        <span class="switcher-indicator">
+                                            <span class="switcher-yes"></span>
+                                            <span class="switcher-no"></span>
+                                        </span>
+                                        <span class="switcher-label">
+                                            <b>Cập nhật đơn đăt sân </b>
+                                            Thông báo khi có cập nhật về đơn đặt sân của tôi, bao gồm cả việc cập nhật thanh toán.
+                                        </span>
+                                    </label>
+                                </div>                                                
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="account-notifications">
                             <div class="card-body pb-2">

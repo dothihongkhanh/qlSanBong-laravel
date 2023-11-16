@@ -26,10 +26,12 @@ Route::get('/home', function () {
 });
 
 Route::get('/fields', [FieldController::class, 'index'])->name('client.fields.index');
+
 Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.detail');
 
-Route::post('/detail', 'App\Http\Controllers\Client\FieldController@busy')->name('client.fields.detail');
+Route::post('/detail', [FieldController::class,'busy'])->name('client.fields.detail');
 
+Route::get('/fields-h', [FieldController::class, 'filterFields'])->name('filter.fields');
 
 
 
