@@ -42,47 +42,6 @@
               </button>
           </div>
       </div>
-      <!-- search sân-->
-      <div class="container-fluid booking pb-5 wow fadeIn" data-wow-delay="0.1s">
-          <div class="container">
-              <div class="bg-white shadow" style="padding: 35px;">
-                  <div class="row g-2">
-                      <div class="col-md-10">
-                          <div class="row g-2">
-                              <div class="col-md-4">
-                                  <select class="form-select">
-                                      <option selected>Quận</option>
-                                      @foreach ($districts as $district)
-                                          <option value="{{ $district->id }}">{{ $district->name_district }}</option>
-                                      @endforeach
-                                  </select>
-                              </div>
-
-                              <div class="col-md-4">
-                                  <select class="form-select">
-                                      <option selected>Phường</option>
-                                      @foreach ($subDistricts as $subDistrict)
-                                          <option value="{{ $subDistrict->id }}">{{ $subDistrict->name_sub_district }}
-                                          </option>
-                                      @endforeach
-                                  </select>
-                              </div>
-                              <div class="col-md-4">
-                                  <div class="date" id="date2" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input"
-                                          placeholder="Nhập sân cần tìm" />
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-2">
-                          <button class="btn btn-primary w-100">Tìm</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
 
       <!-- welcome to xtmn -->
       <div class="container-xxl py-5">
@@ -153,10 +112,122 @@
       <!--Cac san bong -->
       <div class="container-xxl py-5">
           <div class="container">
+            <div class="wrap-header-cart js-panel-cart">
+                <div class="s-full js-hide-cart"></div>
+        
+                <div class="header-cart ">
+                    <div class="header-cart-title ">
+                        <span class="mx-3">
+                            Bộ lọc tìm kiếm sân bóng
+                        </span>
+        
+                        <div class="mx-3 js-hide-cart" style="cursor: pointer;float: left">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+        
+                    <form id="filterForm" form method="GET" action="{{ route('client.home.filter') }}">
+                        <div class="col-md-6 offset-3 my-3">
+                            <label class="ml-3 form-control-placeholder" id="start-p" for="start">Chọn phường/xã:</label>
+                            <select class="form-select" name="sub_district">
+                                <option selected>Phường</option>
+                                @foreach ($subDistricts as $subDistrict)
+                                    <option value="{{ $subDistrict->id }}">{{ $subDistrict->name_sub_district }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6 offset-3 my-3">
+                            <div class="date" id="date1" data-target-input="nearest">
+                                <label class="ml-3 form-control-placeholder" for="#">Chọn ngày đặt:</label>
+                                <input type="date" name="date" class="col-md-14 form-control" min="<?php echo date('Y-m-d'); ?>"
+                                    value="<?php echo date('Y-m-d'); ?>"id="inputDate">
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-3 my-3">
+                            <div class="date" id="date2" data-target-input="nearest">
+                                <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ bắt
+                                    đầu:</label>
+                                <input type="text" name="start_Time" class="form-control datetimepicker-input"
+                                    placeholder="VD: 08:00" id="inputStartTime">
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-3 my-3">
+                            <div class="date" id="date2" data-target-input="nearest">
+                                <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ kết
+                                    thúc:</label>
+                                <input type="text" name="end_Time" class="form-control datetimepicker-input"
+                                    placeholder="VD: 10:00" id="inputEndTime">
+                            </div>
+                        </div>
+                        <div class="price-range-container">
+                            <label for="priceRange">Giá tiền:</label>
+                            <input type="range" id="priceRange" name="priceRange" min="50" max="500" value="100">
+                            <span id="selectedPrice">100</span>.000 VNĐ
+                        </div>
+        
+                        <script>
+                            // Bắt sự kiện thay đổi giá trị của thanh trượt
+                            document.getElementById('priceRange').addEventListener('input', function() {
+                                // Cập nhật giá trị hiển thị
+                                document.getElementById('selectedPrice').textContent = this.value;
+                            });
+                        </script>
+                        <div class="col-md-6 offset-3 my-5">
+                            <button type="submit" class="btn btn-primary w-100">Tìm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="mx-3 js-show-cart" style="cursor: pointer;float: right">Bộ lọc tìm kiếm
+                <i class="fas fa-filter"></i>
+            </p>
               <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                   <h6 class="section-title text-center text-primary text-uppercase">CÁC SÂN BÓNG</h6>
                   <h1 class="mb-5">Khám phá <span class="text-primary text-uppercase">SÂN BÓNG</span></h1>
               </div>
+              <ul class="list-inline">
+                @if (isset($subDistrict1))
+                <li class="list-inline-item">
+                    <h6>Phường/Xã:</h6>
+                </li>
+                <li class="list-inline-item">
+                    <p>{{ $subDistrict1->first()->name_sub_district }}</p>
+                </li> 
+                @endif      
+                @if (isset($date))
+                <li class="list-inline-item">
+                    <h6>Ngày đặt:</h6>
+                </li>
+                <li class="list-inline-item">
+                    <p>{{ $date }}</p>
+                </li> 
+                @endif  
+                @if (isset($startTime))
+                <li class="list-inline-item">
+                    <h6>Giờ bắt đầu:</h6>
+                </li>
+                <li class="list-inline-item">
+                    <p>{{ $startTime }}</p>
+                </li> 
+                @endif  
+                @if (isset($endTime))
+                <li class="list-inline-item">
+                    <h6>Giờ kết thúc:</h6>
+                </li>
+                <li class="list-inline-item">
+                    <p>{{ $endTime }}</p>
+                </li> 
+                @endif  
+                @if (isset($priceRange))
+                <li class="list-inline-item">
+                    <h6>Giá sân:</h6>
+                </li>
+                <li class="list-inline-item">
+                    <p>{{ $priceRange }}.000 VNĐ</p>
+                </li> 
+                @endif           
+            </ul>
               <div class="row g-4">
                   @foreach ($fields as $field)
                       <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">

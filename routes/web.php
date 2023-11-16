@@ -23,6 +23,7 @@ use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 
+Route::get('/fields-f', [HomeController::class, 'filterFields'])->name('client.home.filter');
 Route::get('/home', function () {
     return view('client.home.index');
 });
@@ -81,6 +82,8 @@ Route::post('/payment', [OrderController::class, 'saveOrder']);
 Route::get('client.payment.success_payment', [OrderController::class, 'success'])->name('client.payment.success_payment');
 
 Route::get('/client/profile', [ProfileController::class, 'index'])->name('profile');
+// web.php or routes/web.php
+Route::get('/profile/{id}', [ProfileController::class, 'confirmOrder'])->name('profile.confirmOrder');
 
 Route::get('/manage_field', function () {
     return view('owner.fields.manage_field');

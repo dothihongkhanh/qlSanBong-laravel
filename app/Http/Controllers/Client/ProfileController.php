@@ -64,4 +64,19 @@ class ProfileController extends Controller
             'confirmed_Order' => $confirmed_Order,
         ]);
     }
+        // ProfileController.php
+    public function confirmOrder($id)
+    {
+        $orderDetail = Order_detail::find($id);
+
+        if (!$orderDetail) {
+            return redirect()->back()->with('error', 'Order detail not found.');
+        }
+        $orderDetail->status = 'Đã xác nhận';
+        $orderDetail->save();
+
+        // Redirect back to the profile page or wherever you want
+        return redirect()->back()->with('success', 'Order confirmed successfully.');
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\UserPermission;
 use App\Models\Field;
 use App\Models\FieldChild;
 use App\Models\FieldImage;
@@ -18,8 +19,28 @@ use App\Models\Order_detail;
 
 class FieldController extends Controller
 {
-    public function index()
-    {
+    public function index()  {
+        $id_permission = 0;
+
+        if (session()->has('username')) {
+            $username = session('username');
+            $user = User::where('username', $username)->first();
+        
+            if ($user) {
+                $userPermission = UserPermission::where('username', $user->username)->first();
+        
+                if ($userPermission) {
+                    $id_permission = $userPermission->id_permission;
+                } else {
+                    // Handle the case where user permission is not found
+                }
+            } else {
+                // Handle the case where user is not found
+            }
+        }
+        if ($id_permission==2) {
+            return redirect()->route('owner_home');
+        } else {
         $fields = Field::all(); // Lấy tất cả dữ liệu từ bảng Fields
         $averageStarsByField = []; // Mảng lưu trữ trung bình số sao cho từng sân
         $priceByField = []; // Mảng lưu trữ giá trị price tối thiểu và tối đa
@@ -65,8 +86,29 @@ class FieldController extends Controller
             'subDistricts' => $subDistricts,
         ]);
     }
+}
     public function detail(Request $request)
-    {
+    {$id_permission = 0;
+
+        if (session()->has('username')) {
+            $username = session('username');
+            $user = User::where('username', $username)->first();
+        
+            if ($user) {
+                $userPermission = UserPermission::where('username', $user->username)->first();
+        
+                if ($userPermission) {
+                    $id_permission = $userPermission->id_permission;
+                } else {
+                    // Handle the case where user permission is not found
+                }
+            } else {
+                // Handle the case where user is not found
+            }
+        }
+        if ($id_permission==2) {
+            return redirect()->route('owner_home');
+        } else {
         $id = $request->input('id');
         $field = Field::find($id);
         $user = User::where('username', $field->username)->first();
@@ -144,6 +186,7 @@ class FieldController extends Controller
 
             'times' => $times, // Pass the order details to the view
         ]);
+    }
     }
     public function busy(Request $request)
     {

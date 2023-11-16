@@ -283,10 +283,9 @@
                                                             </td>
                                                             <td>
                                                                 @if ($confirm_Order->status == 'Xác nhận')
-                                                                    <div class="d-flex justify-content-end"><a
-                                                                            class="btn btn-sm btn-primary rounded py-2 px-4"
-                                                                            href="{{ route('profile', ['id' => $confirm_Order->id]) }}">Nhận
-                                                                            sân</a>
+                                                                    <div class="d-flex justify-content-end"><a class="btn btn-sm btn-primary rounded py-2 px-4"
+                                                                        href="{{ route('profile.confirmOrder', ['id' => $confirm_Order->id]) }}">Nhận sân</a>
+                                                                     
                                                                     </div>
                                                                 @else
                                                                     <div class="d-flex justify-content-end">
