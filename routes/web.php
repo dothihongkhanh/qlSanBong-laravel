@@ -78,14 +78,3 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/client/profile', function () {
     return view('client.profile.index');
 })->name('profile');
-
-// Facebook Login URL
-Route::prefix('facebook')->name('facebook.')->group( function(){
-    Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
-    Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
-});
-// Google Login URL
-Route::prefix('google')->name('google.')->group( function(){
-    Route::get('login', [GoogleController::class, 'loginWithgoogle'])->name('login');
-    Route::any('callback',[GoogleController::class,'callbackFromGoogle'])->name('callback');
-});
