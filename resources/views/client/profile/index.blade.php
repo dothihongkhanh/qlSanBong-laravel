@@ -158,15 +158,20 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 </style>
 <div class="profile">
+    @php
+    $username = session('username');
+        $user = \App\Models\User::where('username', $username)->first();
+    @endphp
+
     <div class=" container light-style flex-grow-1 container-p-y ">
 
         <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0 border-right">
                     <div class="user-info">
-                    <img class="avatar img-profile rounded-circle img-circle img-responsive center-block" src="https://www.freeiconspng.com/thumbs/account-icon/account-icon-8.png" alt="Image">
+                    <img class="avatar img-profile rounded-circle img-circle img-responsive center-block" src="{{ $user->avt }}" alt="Image">
                     <ul class="meta list list-unstyled">
-                        <li class="name"><h3>Tên tài khoản</h3></li>
+                        <li class="name"><h3>{{ $user->account_name }}</h3></li>
                     </ul>
                     </div>
                     <div class="list-group list-group-flush account-settings-links">
@@ -204,19 +209,19 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label">Tên đăng nhập</label>
-                                    <input type="text" class="form-control mb-1" value="Tên đăng nhập">
+                                    <input type="text" class="form-control mb-1" value="{{ $user->username }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Tên tài khoản</label>
-                                    <input type="text" class="form-control" value="Tên Tài khoản">
+                                    <input type="text" class="form-control" value="{{ $user->account_name }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Số điện thoại</label>
-                                    <input type="text" class="form-control mb-1" value="số điện thoại">
+                                    <input type="text" class="form-control mb-1" value="{{ $user->phone_number }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Địa chỉ</label>
-                                    <input type="text" class="form-control" value="Địa chỉ">
+                                    <input type="text" class="form-control" value="{{ $user->address }}">
                                 </div>
                             </div>
                         </div>
@@ -224,7 +229,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                             <div class="card-body pb-2">
                                 <div class="form-group">
                                     <label class="form-label">Mật khẩu hiện tại</label>
-                                    <input type="password" class="form-control"  value="Mật khẩu">
+                                    <input type="password" class="form-control"  value="{{ $user->password }}">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Mật khẩu mới</label>
@@ -373,3 +378,4 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 </script>
 
 @endsection
+
