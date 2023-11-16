@@ -1,6 +1,7 @@
 @extends('owner.layouts.app')
 @section('title', 'Quản lý sân bóng')
 @section('content')
+<div id="form1">
 <table class="table table-hover">
     
     @php
@@ -31,7 +32,7 @@
             </tr>
             @foreach($fields as $field)
                 <tr>
-                    <td style="vertical-align: middle; text-align: center;"><input type="checkbox"></td>
+                    <td style="vertical-align: middle; text-align: center;"><input type="checkbox" style="width: 15px; height: 15px;"></td>
                     <td style="vertical-align: middle; text-align: center;">{{ $field->id }}</td>
                     <td style="vertical-align: middle; text-align: center;">
                         <img src="{{ $field->avt }}" alt="ảnh sân" style="width: 10vw; height: 12vh;">
@@ -43,7 +44,7 @@
                     <td style="vertical-align: middle; text-align: center;">{{ $field->time_close }}</td>
                     <td style="vertical-align: middle;">
                         <a style="width: max-content;" class="btn btn-sm btn-primary rounded py-2 px-4"
-                            href="{{ route('owner.fields.detail', ['id' => $field->id]) }}">Chi tiết
+                        onclick="showForm2()">Chi tiết
                         </a>
                     </td>
                 </tr>
@@ -58,5 +59,18 @@
     <button type="button" class="btn btn-sm btn-primary rounded py-2 px-4" style="cursor: pointer;">Sửa</button>
     <button type="button" class="btn btn-sm btn-primary rounded py-2 px-4">Xóa</button>
 </div>
+</div>
+
+
+<div id="form2" style="display: none;">
+ 
+<!-- close comment -->
+</div>
+<script>
+    function showForm2() {
+        document.getElementById('form1').style.display = 'none';
+        document.getElementById('form2').style.display = 'block';
+    }
+</script>
 
 @endsection
