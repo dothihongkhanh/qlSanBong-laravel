@@ -69,7 +69,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login-user');
 //Login--
 
 
-Route::get('/owner home page',[LoginController::class,'dashboard_owner'])->name('owner page');
+Route::get('/owner_home',[LoginController::class,'dashboard_owner'])->name('owner_home');
 
 Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name('admin page');
 
@@ -99,3 +99,8 @@ Route::get('/history_order', function () {
 Route::get('/statistical', function () {
     return view('owner.revenue.statistical');
 });
+
+// Trong tệp web.php
+
+use App\Http\Controllers\owner\PostFieldController;
+Route::post('/post_field', [FieldController::class, 'store'])->name('post_field');
