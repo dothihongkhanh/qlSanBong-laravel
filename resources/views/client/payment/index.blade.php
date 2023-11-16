@@ -23,26 +23,24 @@
                 <th>Thành tiền</th>
             </tr>
         </thead>
-        <tr>
-            <td>{{ $fieldName }}</td>
-            <td>{{ $loaiSan }}</td>
-            <td>{{ $ngayDat }}</td>
-            <td>{{ $gioBatDau }}</td>
-            <td>{{ $gioKetThuc }}</td>
-            <td>{{ $totalTime }}</td>
-            <td><?php echo number_format($childFieldPrice, 0, '.', '.'); ?></td>
-            <td><?php echo number_format($totalAll, 0, '.', '.'); ?></td>
-        </tr>
-
-        </tr>
+        <tbody>
+            @foreach ($orders as $order)
+            <tr>
+                <td>{{ $order['fieldName'] }}</td>
+                <td>{{ $order['loaiSan'] }}</td>
+                <td>{{ $order['ngayDat'] }}</td>
+                <td>{{ $order['gioBatDau'] }}</td>
+                <td>{{ $order['gioKetThuc'] }}</td>
+                <td>{{ $order['totalTime'] }}</td>
+                <td>{{ number_format($order['childFieldPrice'], 0, '.', '.') }}</td>
+                <td>{{ number_format($order['totalAll'], 0, '.', '.') }}</td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
     <div class="col-12">
         <div class="row">
             <div class="col-4">
-                <label for="message">Để lại lời nhắn cho chúng tôi:</label>
-                <div class="form-floating">
-                    <textarea id="note" class="form-control" id="message" style="height: 100px"></textarea>
-                </div>
             </div>
             <div class="col-3"></div>
             <div class="col-5">
@@ -181,8 +179,8 @@
                 <div class="col-12 d-flex align-items-center justify-content-center">
 
                     <form id="datSanForm" action="{{ url('/payment') }}" method="POST">
-                        
-                        <button type="submit" id="datSanButton">Đặt sân</button>
+
+                        <button type="submit" id="datSanButton" class="btn btn-primary">Đặt sân</button>
                         @csrf
                     </form>
                 </div>
