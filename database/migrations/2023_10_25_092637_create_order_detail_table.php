@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('time_end', $precision = 0); 
             $table->date('time_order');
             $table->text('note');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('id_order')

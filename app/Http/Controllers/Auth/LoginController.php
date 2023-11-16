@@ -41,7 +41,6 @@ class LoginController extends Controller
                             return redirect()->route('owner_home');
                         case 3:
                             return redirect('');
-                        default:
                             return back()->with('fail', 'Không có quyền truy cập');
                     }
                 } else {

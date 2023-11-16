@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
+use App\Http\Controllers\Client\ProfileController;
 use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
@@ -71,12 +72,11 @@ Route::post('/login', [LoginController::class, 'login'])->name('login-user');
 //Login--
 
 
-Route::get('/owner home page',[LoginController::class,'dashboard_owner'])->name('owner page');
+Route::get('/owner home page',[LoginController::class,'dashboard_owner'])->name('owner_home');
 
-Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name('admin page');
+Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name('admin_home');
 
 
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-Route::get('/client/profile', function () {
-    return view('client.profile.index');
-})->name('profile');
+
+Route::get('/client/profile', [ProfileController::class, 'index'])->name('profile');
