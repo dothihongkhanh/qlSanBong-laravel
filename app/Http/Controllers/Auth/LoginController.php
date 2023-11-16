@@ -41,7 +41,6 @@ class LoginController extends Controller
                             return redirect()->route('owner_home');
                         case 3:
                             return redirect('');
-                        default:
                             return back()->with('fail', 'Không có quyền truy cập');
                     }
                 } else {
@@ -62,7 +61,7 @@ class LoginController extends Controller
 
     public function dashboard_owner()
     {
-        return view('owner.index'); // Thay đổi view tương ứng
+        return view('owner.home.index'); // Thay đổi view tương ứng
     }
 
     public function dashboard_admin()

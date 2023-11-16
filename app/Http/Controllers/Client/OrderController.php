@@ -99,7 +99,8 @@ class OrderController extends Controller
                 $orderDetail->time_start = $gioBatDau;
                 $orderDetail->time_end = $gioKetThuc;
                 $orderDetail->time_order = $ngayDat;
-                $orderDetail->note = ''; // Thay thế bằng ghi chú thực tế
+                $orderDetail->note = '';
+                $orderDetail->status = 'Chờ xác nhận'; // Thay thế bằng ghi chú thực tế
                 $orderDetail->save();
             }
         } else {

@@ -18,6 +18,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
 use App\Http\Controllers\Client\OrderController;
+use App\Http\Controllers\Client\ProfileController;
 use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
@@ -27,11 +28,13 @@ Route::get('/home', function () {
 });
 
 Route::get('/fields', [FieldController::class, 'index'])->name('client.fields.index');
+
 Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.detail');
 
 Route::post('/vnpay_payment', [OnlinePaymentController::class, 'vnpay_payment']);
 Route::post('/detail', 'App\Http\Controllers\Client\FieldController@busy')->name('client.fields.detail');
 
+Route::get('/fields-h', [FieldController::class, 'filterFields'])->name('filter.fields');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -61,15 +64,12 @@ Route::post('/login', [LoginController::class, 'login'])->name('login-user');
 //Login--
 
 
-Route::get('/owner home page',[LoginController::class,'dashboard_owner'])->name('owner page');
+Route::get('/owner_home',[LoginController::class,'dashboard_owner'])->name('owner_home');
 
-Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name('admin page');
+Route::get('/admin home page',[LoginController::class,'dashboard_admin'])->name('admin_home');
 
 
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-Route::get('/client/profile', function () {
-    return view('client.profile.index');
-})->name('profile');
 
 //payment
 Route::get('/payment', [OrderController::class, 'index']);
@@ -79,3 +79,31 @@ Route::post('/payment', [OrderController::class, 'saveOrder']);
 // });
 
 Route::get('client.payment.success_payment', [OrderController::class, 'success'])->name('client.payment.success_payment');
+
+Route::get('/client/profile', [ProfileController::class, 'index'])->name('profile');
+
+Route::get('/manage_field', function () {
+    return view('owner.fields.manage_field');
+});
+
+Route::get('/post_field', function () {
+    return view('owner.fields.post_field');
+});
+
+Route::get('/approve_order', function () {
+    return view('owner.order.approve_order');
+});
+Route::get('/see_order', function () {
+    return view('owner.order.see_order');
+});
+Route::get('/history_order', function () {
+    return view('owner.order.history_order');
+});
+Route::get('/statistical', function () {
+    return view('owner.revenue.statistical');
+});
+
+// Trong tệp web.php
+
+use App\Http\Controllers\owner\PostFieldController;
+Route::post('/post_field', [FieldController::class, 'store'])->name('post_field');

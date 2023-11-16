@@ -1,61 +1,51 @@
 <!-- Page Header Start -->
 @extends('client.layouts.app')
 @section('title', $field->name_field)
-@section('content')
+@php
+    $isLoggedIn = session('username') ? true : false;
+@endphp
 
-<!-- đường dẫn -->
-<!-- close đường dẫn -->
-<div class="container mt-3">
-    <p><a href="{{ route('client.home') }}">Trang chủ</a> /<a href="{{ route('client.fields.index') }}"> Danh sách sân </a>/ <b>{{ $field->name_field }}</b></p>
-</div>
-<!-- Open Content -->
-<div class="container pb-5">
-    <div class="row">
-        <div class="col-lg-5 mt-2">
-            <div class="card mb-3">
-                <img class="card-img img-fluid" src="{{ $field->avt }}" alt="Card image cap" id="product-detail" style="height:410px">
-            </div>
-            <div class="row">
-                <!--Start Controls-->
-                <div class="col-1 align-self-center">
-                    <a href="#multi-item-example" role="button" data-bs-slide="prev">
-                        <i class="text-dark fas fa-chevron-left"></i>
-                        <span class="sr-only">Previous</span>
-                    </a>
+@section('content')
+    <!-- đường dẫn -->
+    <!-- close đường dẫn -->
+    <div class="container mt-3">
+        <p><a href="{{ route('client.home') }}">Trang chủ</a> /<a href="{{ route('client.fields.index') }}"> Danh sách sân
+            </a>/ <b>{{ $field->name_field }}</b></p>
+    </div>
+    <!-- Open Content -->
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-5 mt-2">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid" src="{{ $field->avt }}" alt="Card image cap" id="product-detail"
+                        style="height:410px">
                 </div>
-                <!--End Controls-->
-                <!--Start Carousel Wrapper-->
-                <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
-                    <!--Start Slides-->
-                    <div class="carousel-inner product-links-wap" role="listbox">
-                        <!--First slide-->
-                        <div class="carousel-item active">
-                            <div class="row">
-                                @foreach ($fieldImages->take(3) as $image)
-                                <div class="col-4">
-                                    <a href="#">
-                                        <img class="card-img img-fluid" src="{{ $imageUrls->where('id', $image->id_image)->first()->url }}" style="height:90px">
-                                    </a>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <!--/.First slide-->
-                        <!--Second slide-->
-                        <div class="carousel">
-                            @foreach ($fieldImages->chunk(3) as $chunk)
-                            <div class="carousel-item">
+                <div class="row">
+                    <!--Start Controls-->
+                    <div class="col-1 align-self-center">
+                        <a href="#multi-item-example" role="button" data-bs-slide="prev">
+                            <i class="text-dark fas fa-chevron-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+                    <!--Start Carousel Wrapper-->
+                    <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
+                        <!--Start Slides-->
+                        <div class="carousel-inner product-links-wap" role="listbox">
+                            <!--First slide-->
+                            <div class="carousel-item active">
                                 <div class="row">
-                                    @foreach ($chunk as $image)
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <img class="card-img img-fluid" src="{{ $imageUrls->where('id', $image->id_image)->first()->url }}" style="height:90px">
-                                        </a>
-                                    </div>
+                                    @foreach ($fieldImages->take(3) as $image)
+                                        <div class="col-4">
+                                            <a href="#">
+                                                <img class="card-img img-fluid"
+                                                    src="{{ $imageUrls->where('id', $image->id_image)->first()->url }}"
+                                                    style="height:90px">
+                                            </a>
+                                        </div>
                                     @endforeach
                                 </div>
-                            </div>
-                            @endforeach
                         </div>
                         <!--/.Second slide-->
                     </div>
@@ -225,119 +215,132 @@
                             <select id= "inputFieldChild"class="form-select" id="mySelect">
                                 @foreach ($fieldChilds as $child)
                                 <option>{{ $child->id }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ bắt đầu</label>
-                                <input type="text" class="form-control datetimepicker-input" placeholder="VD: 08:00" id="inputStartTime">
+                                
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ kết thúc</label>
-                                <input type="text" class="form-control datetimepicker-input" placeholder="VD: 10:00" id="inputEndTime">
+                            <div class="col-md-6">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ bắt
+                                        đầu</label>
+                                    <input type="text" class="form-control datetimepicker-input"
+                                        placeholder="VD: 08:00" id="inputStartTime">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <label class="ml-3 form-control-placeholder" id="start-p" for="start">Giờ kết
+                                        thúc</label>
+                                    <input type="text" class="form-control datetimepicker-input"
+                                        placeholder="VD: 10:00" id="inputEndTime">
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary w-100" id="addBooking">Thêm sân</button>
+                        <script>
+                            var isLoggedIn = @json($isLoggedIn);
+                        </script>
+
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <button class="btn btn-primary w-100" id="addBooking">Thêm sân</button>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-2">
+                    <table id="bookingTable" data-field-open-time="{{ $field->time_open }}"
+                        data-field-close-time="{{ $field->time_close }}" class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>Ngày đặt</th>
+                                <th>Loại sân</th>
+                                <th>Giờ bắt đầu</th>
+                                <th>Giờ kết thúc</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="col-md-3 float-end">
+                    <button class="btn btn-primary w-100" onclick="bookField('{{ $field->id }}')">Đặt sân</button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-7">
-            <div class="row g-2">
-                <table id="bookingTable" data-field-open-time="{{ $field->time_open }}" data-field-close-time="{{ $field->time_close }}" class="table table-striped">
-
-                    <thead>
-                        <tr>
-                            <th>Ngày đặt</th>
-                            <th>Loại sân</th>
-                            <th>Giờ bắt đầu</th>
-                            <th>Giờ kết thúc</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-            
-            <div class="col-md-3 float-end">
-                <button class="btn btn-primary w-100" onclick="bookField('{{$field->id}}')">Đặt sân</button>
-            </div>
-        </div>
     </div>
-</div>
-<!-- Close Dat san -->
-
-<!-- Binh luan -->
-<div class="container my-5">
-    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-        <h5 class="section-title text-center text-primary text-uppercase">Bình luận</h5>
-    </div>
+    <!-- Close Dat san -->
 
     <!-- Binh luan -->
-    <div class="container mt-3 d-flex">
+    <div class="container my-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="section-title text-center text-primary text-uppercase">Bình luận</h5>
+        </div>
 
-        <div class="row d-flex">
-            <div class="col-md-12">
-                <div class="text-left">
-                    <h6>Tất cả bình luận ({{$commentCount}})</h6>
-                </div>
-                @foreach ($comments as $comment)
-                <div class="border-bottom p-3 mb-2">
+        <!-- Binh luan -->
+        <div class="container mt-3 d-flex">
 
-                    <div class="d-flex flex-row">
-                        @foreach ($user2 as $user1)
-                        @if ($comment->username == $user1->username)
-                        <img src="{{ $user1->avt }}" height="40" width="40" class="rounded-circle">
-                        <div class="d-flex flex-column ms-2">
-                            <h6 class="mb-1">{{ $user1->account_name }} | {{ $comment->star }}<i class="fa fa-star text-primary"></i></h6>
-                            @foreach ($fieldChilds as $fieldChild1)
-                            @if ($fieldChild1->id == $comment->id_field_child)
-                            <p>Loại sân: <b>{{ $fieldChild1->name_field_child }}</b></p>
-                            @endif
-                            @endforeach
-                            <p class="comment-text">{{ $comment->content }}</p>
-                            <!-- Kiểm tra xem có hình ảnh cho bình luận hiện tại -->
-                            <div class="d-inline mb-3">
-                                @foreach ($commentImages as $commentImage)
-                                @if ($commentImage->id_comment == $comment->id)
-                                @foreach ($imageUrls2 as $image2)
-                                @if ($image2->id == $commentImage->id_image)
-                                <img src="{{ $image2->url }}" style="width:70px ;height:70px">
-                                @endif
-                                @endforeach
-                                @endif
-                                @endforeach
-                            </div>
-                        </div>
-                        @endif
-                        @endforeach
+            <div class="row d-flex">
+                <div class="col-md-12">
+                    <div class="text-left">
+                        <h6>Tất cả bình luận ({{ $commentCount }})</h6>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row gap-3 align-items-center">
-                            <div class="d-flex align-items-center">
-                                <i class="fa-regular fa fa-thumbs-up" style="color: #cbcbcb;"></i>
-                                <span class="ms-1 fs-10">Like</span>
-                            </div>
+                    @foreach ($comments as $comment)
+                        <div class="border-bottom p-3 mb-2">
 
-                            <div class="d-flex align-items-center">
-                                <i class="fa fa-reply text-primary"></i>
-                                <span class="ms-1 fs-10">Reply</span>
+                            <div class="d-flex flex-row">
+                                @foreach ($user2 as $user1)
+                                    @if ($comment->username == $user1->username)
+                                        <img src="{{ $user1->avt }}" height="40" width="40"
+                                            class="rounded-circle">
+                                        <div class="d-flex flex-column ms-2">
+                                            <h6 class="mb-1">{{ $user1->account_name }} | {{ $comment->star }}<i
+                                                    class="fa fa-star text-primary"></i></h6>
+                                            @foreach ($fieldChilds as $fieldChild1)
+                                                @if ($fieldChild1->id == $comment->id_field_child)
+                                                    <p>Loại sân: <b>{{ $fieldChild1->name_field_child }}</b></p>
+                                                @endif
+                                            @endforeach
+                                            <p class="comment-text">{{ $comment->content }}</p>
+                                            <!-- Kiểm tra xem có hình ảnh cho bình luận hiện tại -->
+                                            <div class="d-inline mb-3">
+                                                @foreach ($commentImages as $commentImage)
+                                                    @if ($commentImage->id_comment == $comment->id)
+                                                        @foreach ($imageUrls2 as $image2)
+                                                            @if ($image2->id == $commentImage->id_image)
+                                                                <img src="{{ $image2->url }}"
+                                                                    style="width:70px ;height:70px">
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-row gap-3 align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-regular fa fa-thumbs-up" style="color: #cbcbcb;"></i>
+                                        <span class="ms-1 fs-10">Like</span>
+                                    </div>
+
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa fa-reply text-primary"></i>
+                                        <span class="ms-1 fs-10">Reply</span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row">
+                                    <span class="text-muted fw-normal fs-10">{{ $comment->time }}</span>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="d-flex flex-row">
-                            <span class="text-muted fw-normal fs-10">{{ $comment->time }}</span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </div>
-</div>
-<!-- close comment -->
+    <!-- close comment -->
 @endsection
