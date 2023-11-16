@@ -38,6 +38,12 @@ label.btn {
     cursor: pointer;
 }
 
+.btn-primary {
+    margin-top: 50px;
+    margin-right: 30px;
+    float: right;
+}
+
 .text-light {
     color: #babbbc !important;
 }
@@ -159,7 +165,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 </style>
 <div class="profile">
     @php
-    $username = session('username');
+        $username = session('username');
         $user = \App\Models\User::where('username', $username)->first();
     @endphp
 
@@ -224,6 +230,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                                     <input type="text" class="form-control" value="{{ $user->address }}">
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-primary save-inf">Save changes</button>&nbsp;
                         </div>
                         <div class="tab-pane fade" id="account-change-password">
                             <div class="card-body pb-2">
@@ -240,6 +247,7 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                                     <input type="password" class="form-control">
                                 </div>
                             </div>
+                            <button type="button" class="btn btn-primary save-passw">Save changes</button>&nbsp;
                         </div>
                         <div class="tab-pane fade" id="account-update-notifications">
                             <div class="card-body pb-2">
@@ -338,10 +346,6 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="text-right mt-3">
-            <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-            <button type="button" class="btn btn-default">Cancel</button>
         </div>
         
     
