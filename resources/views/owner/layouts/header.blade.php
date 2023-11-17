@@ -172,7 +172,7 @@
                     Cài đặt
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item"  data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Đăng xuất
                 </a>
@@ -191,7 +191,7 @@
                 <div class="modal-body">Chọn "Đăng xuất" nếu bạn chắc chắn.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="{{ route('login') }}">Đăng xuất</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}">Đăng xuất</a>
                 </div>
             </div>
         </div>

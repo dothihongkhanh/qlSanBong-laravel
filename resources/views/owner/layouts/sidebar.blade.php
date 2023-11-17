@@ -43,11 +43,6 @@
         Đơn đặt sân
     </div>
     <li class="nav-item">
-        <a class="nav-link" href="/approve_order">
-            <i class="fas fa-clipboard-check"></i>
-            <span>Duyệt đơn đặt sân</span></a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link" href="/see_order">
             <i class="fas fa-address-book"></i>
             <span>Xem đơn đặt sân</span></a>

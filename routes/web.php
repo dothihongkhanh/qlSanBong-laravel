@@ -94,12 +94,6 @@ Route::get('/post_field', function () {
     return view('owner.fields.post_field');
 });
 
-Route::get('/approve_order', function () {
-    return view('owner.order.approve_order');
-});
-Route::get('/see_order', function () {
-    return view('owner.order.see_order');
-});
 Route::get('/history_order', function () {
     return view('owner.order.history_order');
 });
