@@ -19,6 +19,7 @@ use App\Http\Controllers\Client\FieldController;
 use App\Http\Controllers\Client\OnlinePaymentController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\owner\See_OrderController;
 use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
@@ -110,3 +111,10 @@ Route::get('/statistical', function () {
 
 use App\Http\Controllers\owner\PostFieldController;
 Route::post('/post_field', [FieldController::class, 'store'])->name('post_field');
+
+Route::get('/see_order', [See_OrderController::class, 'index'])->name('see_order');
+
+Route::get('/see_order_detail', [See_OrderController::class, 'detail'])->name('owner.order.see_order_detail');
+
+Route::get('/see_order_detail/{id}', [See_OrderController::class, 'confirmOrder'])->name('owner.order.see_order_detail.confirmOrder');
+

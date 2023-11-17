@@ -28,7 +28,7 @@ class OrderDetailSeeder extends Seeder
                 'time_end' => '10:00',
                 'time_order' => Carbon::createFromFormat('d/m/Y', '20/11/2023'),
                 'note' => '',
-                'status'=>'Xác nhận',
+                'status'=>'Chờ xác nhận',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -73,7 +73,7 @@ class OrderDetailSeeder extends Seeder
                 'time_end' => '17:00',
                 'time_order' => Carbon::createFromFormat('d/m/Y', '21/11/2023'),
                 'note' => '',
-                'status'=>'Chờ xác nhận',
+                'status'=>'Chờ xác nhận',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
