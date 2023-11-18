@@ -112,3 +112,6 @@ Route::get('/see_order_detail', [See_OrderController::class, 'detail'])->name('o
 
 Route::get('/see_order_detail/{id}', [See_OrderController::class, 'confirmOrder'])->name('owner.order.see_order_detail.confirmOrder');
 
+//ManageController
+Route::get('/getChildFields/{id}', 'App\Http\Controllers\owner\ManageController@getFieldDetails');
+Route::get('/getNameField/{id}', 'App\Http\Controllers\owner\ManageController@getNameField');
