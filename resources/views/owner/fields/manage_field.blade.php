@@ -19,9 +19,8 @@
 
     @if($fields)
         <table class="table table-hover">
-            <tr>
-                <th></th>
-                <th style="vertical-align: middle; text-align: center;">ID</th>
+            <tr>           
+                <th style="vertical-align: middle; text-align: center;"></th>
                 <th style="vertical-align: middle; text-align: center;">Hình ảnh</th>
                 <th style="vertical-align: middle; text-align: center;">Tên sân</th>
                 <th style="vertical-align: middle; text-align: center;">Địa chỉ</th>
@@ -33,7 +32,6 @@
             @foreach($fields as $field)
                 <tr>
                     <td style="vertical-align: middle; text-align: center;"><input type="checkbox"  name="fields" style="width: 15px; height: 15px;"></td>
-                    <td style="vertical-align: middle; text-align: center;">{{ $field->id }}</td>
                     <td style="vertical-align: middle; text-align: center;">
                         <img src="{{ $field->avt }}" alt="ảnh sân" style="width: 10vw; height: 12vh;">
                     </td>
@@ -101,7 +99,6 @@
                 $('#childFieldsTable').append(
                     '<tr>'+
                         '<th></th>'+
-                        '<th style="vertical-align: middle; text-align: center;">id</th>'+
                         '<th style="vertical-align: middle; text-align: center;">Tên sân con</th>'+
                         '<th style="vertical-align: middle; text-align: center;">Hình ảnh</th>'+
                         '<th style="vertical-align: middle; text-align: center;">Loại sân</th>'+
@@ -114,7 +111,6 @@
                 $('#childFieldsTable').append(
                     '<tr>' +
                     '<td style="vertical-align: middle; text-align: center;"><input type="checkbox" name="field-child" style="width: 15px; height: 15px;"></td>'+
-                    '<td  style="vertical-align: middle; text-align: center;">' + child.id + '</td>' +
                     '<td style="vertical-align: middle; text-align: center;">' + child.name_field_child + '</td>' +
                     '<td style="vertical-align: middle; text-align: center;"><img src="' + child.avt + '" alt="ảnh sân" style="width: 10vw; height: 12vh;"></td>' +
                     '<td style="vertical-align: middle; text-align: center;">' + child.type_field_child + '</td>' +
