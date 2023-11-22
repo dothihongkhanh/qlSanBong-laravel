@@ -32,6 +32,7 @@ Route::get('/fields', [FieldController::class, 'index'])->name('client.fields.in
 Route::get('/detail', [FieldController::class, 'detail'])->name('client.fields.detail');
 
 Route::post('/vnpay_payment', [OnlinePaymentController::class, 'vnpay_payment']);
+
 Route::post('/detail', 'App\Http\Controllers\Client\FieldController@busy')->name('client.fields.detail');
 
 Route::get('/fields-h', [FieldController::class, 'filterFields'])->name('filter.fields');
@@ -73,11 +74,10 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 //payment
 Route::get('/payment', [OrderController::class, 'index']);
-//Route::post('/payment', [OrderController::class, 'confirmBooking']);
 Route::post('/confirm-booking', [OrderController::class, 'confirmBooking'])->name('confirm.booking');
-// Route::get('/payment_succsess', function () {
-//     return view('client.payment.success_payment');
-// });
+Route::get('/payment_succsess', function () {
+    return view('client.payment.success_payment');
+});
 
 Route::get('client.payment.success_payment', [OrderController::class, 'success'])->name('client.payment.success_payment');
 
@@ -86,7 +86,6 @@ Route::get('/client/profile', [ProfileController::class, 'index'])->name('profil
 Route::get('/manage_field', function () {
     return view('owner.fields.manage_field');
 });
-
 Route::get('/post_field', function () {
     return view('owner.fields.post_field');
 });

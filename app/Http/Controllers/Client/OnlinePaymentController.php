@@ -3,27 +3,89 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OnlinePaymentController extends Controller
 {
     public function vnpay_payment(Request $request)
     {
-        $data = $request -> all();
+        // Lấy dữ liệu từ request
+        $data = $request->all();
 
+        // Kiểm tra xem 'total' có tồn tại trong dữ liệu không
+        if ($request->has('total')) {
+            // Bắt đầu một giao dịch cơ sở dữ liệu
+            DB::beginTransaction();
+
+            try {
+                // Tạo một đối tượng Order và lưu vào cơ sở dữ liệu
+                $order = new Order();
+                $order->username = session('username'); // Giả sử bạn có một phiên đăng nhập người dùng
+                $order->time_create = now();
+                $order->status = 'Đã thanh toán'; // Chưa thanh toán vì chưa nhấn nút thanh toán VNPAY
+                $order->save();
+
+                // Lấy ID của đơn đặt hàng
+                $orderId = $order->id;
+
+               // Lưu thông tin đặt sân vào bảng order_detail
+            if ($request->has('bookingData')) {
+                // Decode dữ liệu JSON
+                $bookingData = json_decode(urldecode($request->input('bookingData')), true);
+
+                // Lặp qua dữ liệu đặt sân và tạo các chi tiết đơn đặt hàng
+                foreach ($bookingData as $booking) {
+                    $orderDetail = new OrderDetail();
+                    $orderDetail->id_order = $orderId;
+                    $orderDetail->id_field_child = $booking['loaiSan'];
+                    $orderDetail->time_start = $booking['gioBatDau'];
+                    $orderDetail->time_end = $booking['gioKetThuc'];
+                    $orderDetail->time_order = $booking['ngayDat'];
+                    $orderDetail->note = '';
+                    $orderDetail->status = 'Chờ xác nhận';
+                    $orderDetail->save();
+                }
+            }
+
+                // Commit giao dịch cơ sở dữ liệu
+                DB::commit();
+
+                // Tiếp tục xử lý thanh toán và chuyển hướng đến trang thanh toán VNPAY
+                return $this->redirectToVnpay($orderId, $data['total']);
+            } catch (\Exception $e) {
+                // Nếu có lỗi, rollback giao dịch cơ sở dữ liệu
+                DB::rollBack();
+
+                // Redirect về trang trước với thông báo lỗi
+                return redirect()->back()->with('error', 'Có lỗi xảy ra trong quá trình xử lý đặt sân. Vui lòng thử lại.');
+            }
+        } else {
+            // Redirect về trang trước với thông báo lỗi
+            return redirect()->back()->with('error', 'Dữ liệu không hợp lệ.');
+        }
+    }
+
+    // Hàm thực hiện thanh toán VNPAY và chuyển hướng
+    private function redirectToVnpay($orderId, $totalAmount)
+    {
+        // Lấy các thông tin cần thiết cho thanh toán VNPAY
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = "http://127.0.0.1:8000/payment_succsess";
-        $vnp_TmnCode = "CGXZLS0Z"; //Mã website tại VNPAY 
-        $vnp_HashSecret = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN"; //Chuỗi bí mật
+        $vnp_TmnCode = "CGXZLS0Z"; // Mã website tại VNPAY 
+        $vnp_HashSecret = "XNBCJFAKAZQSGTARRLGCHVZWCIOIGSHN"; // Chuỗi bí mật
 
-        $vnp_TxnRef = rand(00,9999); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = 'thanh toan hoa don';
-        $vnp_OrderType = 'xtmn';
-        $vnp_Amount =  $data['total'] * 100;
-        $vnp_Locale = 'VN';
-        $vnp_BankCode = 'NCB';
+        $vnp_TxnRef = $orderId; // Mã đơn hàng
+        $vnp_OrderInfo = 'Thanh toán đơn đặt sân'; // Thông tin đơn hàng
+        $vnp_OrderType = 'xtmn'; // Loại đơn hàng
+        $vnp_Amount = $totalAmount * 100; // Số tiền cần thanh toán
+        $vnp_Locale = 'VN'; // Ngôn ngữ
+        $vnp_BankCode = 'NCB'; // Mã ngân hàng (nếu có)
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
+        // Xây dựng dữ liệu thanh toán
         $inputData = array(
             "vnp_Version" => "2.1.0",
             "vnp_TmnCode" => $vnp_TmnCode,
@@ -42,39 +104,31 @@ class OnlinePaymentController extends Controller
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
             $inputData['vnp_BankCode'] = $vnp_BankCode;
         }
-        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
-            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
-        }
 
-        //var_dump($inputData);
+        // Sắp xếp mảng theo key
         ksort($inputData);
         $query = "";
         $i = 0;
-        $hashdata = "";
+        $hashData = "";
         foreach ($inputData as $key => $value) {
             if ($i == 1) {
-                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+                $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
             } else {
-                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $hashData .= urlencode($key) . "=" . urlencode($value);
                 $i = 1;
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
 
         $vnp_Url = $vnp_Url . "?" . $query;
+
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnpSecureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret); 
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
-        $returnData = array(
-            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
-        );
-        if (isset($_POST['redirect'])) {
-            header('Location: ' . $vnp_Url);
-            die();
-        } else {
-            echo json_encode($returnData);
-        }
-        // vui lòng tham khảo thêm tại code demo
+
+        // Chuyển hướng đến trang thanh toán VNPAY
+        return redirect()->away($vnp_Url);
     }
+
 }

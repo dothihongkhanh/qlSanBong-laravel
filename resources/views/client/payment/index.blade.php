@@ -97,6 +97,7 @@
                                         <form action="{{ url('/vnpay_payment') }}" method="POST">
                                             @csrf
                                             <input name="total" value="{{ $totalAll }}" type="hidden">
+                                            <input type="hidden" name="bookingData" value="{{ urlencode(json_encode($orders)) }}">
                                             <button type="submit" name="redirect" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg"></button>
                                         </form>
                                     </div>
@@ -123,6 +124,7 @@
                                             <input name="total" value="{{ $deposit }}" type="hidden">
                                             <button type="submit" name="redirect" class="btn"><img class="card-img-top p-sm-3" src="https://vnpay.vn/assets/images/logo-icon/logo-primary.svg"></button>
                                         </form>
+
                                     </div>
                                 </div>
                                 <div id="deposit_offline" class="col-md-6 mt-sm-3 text-center ">
@@ -177,13 +179,11 @@
 
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center">
-
                     <form id="datSanForm" action="{{ route('confirm.booking') }}" method="POST">
                         <input type="hidden" name="bookingData" value="{{ urlencode(json_encode($orders)) }}">
                         <button type="submit" id="datSanButton" class="btn btn-primary">Đặt sân fn</button>
                         @csrf
                     </form>
-
                 </div>
             </div>
         </div>
