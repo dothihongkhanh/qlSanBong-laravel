@@ -104,9 +104,9 @@
                   <i class="fab fa-facebook"></i>
                 </button>
     
-                <button type="button" class="btn btn-primary btn-floating mx-1">
+                <a href="{{ route('google-auth') }}" class="btn btn-primary btn-floating mx-1">
                   <i class="fab fa-google"></i>
-                </button>              
+                </a>              
             </div>
   
           </form>
