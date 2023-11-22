@@ -178,11 +178,12 @@
                 </div>
                 <div class="col-12 d-flex align-items-center justify-content-center">
 
-                    <form id="datSanForm" action="{{ url('/payment') }}" method="POST">
-
-                        <button type="submit" id="datSanButton" class="btn btn-primary">Đặt sân</button>
+                    <form id="datSanForm" action="{{ route('confirm.booking') }}" method="POST">
+                        <input type="hidden" name="bookingData" value="{{ urlencode(json_encode($orders)) }}">
+                        <button type="submit" id="datSanButton" class="btn btn-primary">Đặt sân fn</button>
                         @csrf
                     </form>
+
                 </div>
             </div>
         </div>

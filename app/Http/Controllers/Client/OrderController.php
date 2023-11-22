@@ -21,7 +21,7 @@ class OrderController extends Controller
         $bookingData = json_decode(urldecode($_GET['bookingData']), true);
         $fieldId = $_GET['id'];
 
-        $this->saveOrder($request);
+        // $this->saveOrder($request);
 
         // Thực hiện truy vấn vào cơ sở dữ liệu để lấy tên sân tương ứng
         $field = DB::table('field')->where('id', $fieldId)->first();
@@ -72,44 +72,59 @@ class OrderController extends Controller
         return view('client.payment.index', compact('orders', 'totalAll', 'deposit', 'fieldAddress'));
     }
 
-    public function saveOrder(Request $request)
+
+
+    public function confirmBooking(Request $request)
     {
-        $bookingData = json_decode(urldecode($request->input('bookingData')), true);
+        // Check if 'bookingData' key exists in the input data
+        if ($request->has('bookingData')) {
+            // Decode the JSON data
+            $bookingData = json_decode(urldecode($request->input('bookingData')), true);
 
-        // Lưu thông tin đơn đặt hàng vào bảng "order"
-        $order = new Order();
-        $order->username = session('username');
-        $order->time_create = now();
-        $order->status = 'Chưa thanh toán'; // Hoặc giá trị khác tùy thuộc vào logic của bạn
-        $order->save();
-        // Lấy ID của đơn đặt hàng vừa được tạo
-        $orderId = $order->id;
+            // Start a database transaction
+            \DB::beginTransaction();
 
-        if (!empty($bookingData) && is_array($bookingData)) {
-            foreach ($bookingData as $booking) {
-                $loaiSan = $booking['loaiSan']; // Lấy giá trị 'loaiSan' từ mảng $booking
-                $ngayDat = $booking['ngayDat'];
-                $gioBatDau = $booking['gioBatDau'];
-                $gioKetThuc = $booking['gioKetThuc'];
+            try {
+                // Create an order
+                $order = new Order();
+                $order->username = session('username'); // Assuming you have a user session
+                $order->time_create = now();
+                $order->status = 'Chưa thanh toán';
+                $order->save();
 
-                // Lưu thông tin đơn đặt hàng vào bảng "order_detail"
-                $orderDetail = new OrderDetail();
-                $orderDetail->id_order = $orderId;
-                $orderDetail->id_field_child = $loaiSan;
-                $orderDetail->time_start = $gioBatDau;
-                $orderDetail->time_end = $gioKetThuc;
-                $orderDetail->time_order = $ngayDat;
-                $orderDetail->note = '';
-                $orderDetail->status = 'Chờ xác nhận'; // Thay thế bằng ghi chú thực tế
-                $orderDetail->save();
+                // Get the ID of the order
+                $orderId = $order->id;
+
+                // Loop through the booking data and create order details
+                foreach ($bookingData as $booking) {
+                    $orderDetail = new OrderDetail();
+                    $orderDetail->id_order = $orderId;
+                    $orderDetail->id_field_child = $booking['loaiSan'];
+                    $orderDetail->time_start = $booking['gioBatDau'];
+                    $orderDetail->time_end = $booking['gioKetThuc'];
+                    $orderDetail->time_order = $booking['ngayDat'];
+                    $orderDetail->note = '';
+                    $orderDetail->status = 'Chờ xác nhận';
+                    $orderDetail->save();
+                }
+
+                // Commit the transaction
+                \DB::commit();
+
+                // Redirect to the success page
+                return redirect()->route('client.payment.success_payment')->with('success', 'Đặt sân thành công!');
+            } catch (\Exception $e) {
+                // Rollback the transaction in case of an error
+                \DB::rollBack();
+
+                // Redirect back with an error message
+                return redirect()->back()->with('error', 'Có lỗi xảy ra trong quá trình xử lý đặt sân. Vui lòng thử lại.');
             }
         } else {
-            // Handle the case when $bookingData is null or not an array
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'Dữ liệu đặt sân không hợp lệ.');
         }
-
-        return redirect()->route('client.payment.success_payment');
     }
-
 
     public function success()
     {

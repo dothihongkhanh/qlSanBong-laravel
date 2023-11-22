@@ -73,7 +73,8 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 //payment
 Route::get('/payment', [OrderController::class, 'index']);
-Route::post('/payment', [OrderController::class, 'saveOrder']);
+//Route::post('/payment', [OrderController::class, 'confirmBooking']);
+Route::post('/confirm-booking', [OrderController::class, 'confirmBooking'])->name('confirm.booking');
 // Route::get('/payment_succsess', function () {
 //     return view('client.payment.success_payment');
 // });
