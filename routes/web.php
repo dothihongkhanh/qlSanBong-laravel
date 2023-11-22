@@ -20,6 +20,7 @@ use App\Http\Controllers\Client\OnlinePaymentController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\owner\See_OrderController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use Illuminate\Auth\Events\Login;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
@@ -115,3 +116,6 @@ Route::get('/see_order_detail/{id}', [See_OrderController::class, 'confirmOrder'
 //ManageController
 Route::get('/getChildFields/{id}', 'App\Http\Controllers\owner\ManageController@getFieldDetails');
 Route::get('/getNameField/{id}', 'App\Http\Controllers\owner\ManageController@getNameField');
+//login with google
+Route::get('auth/google',[GoogleAuthController::class,'redirect'])->name('google-auth');
+Route::get('auth/google/callback',[GoogleAuthController::class,'callbackGoogle']);
